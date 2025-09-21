@@ -283,30 +283,3 @@ Este projeto está licenciado sob a **Licença MIT**. Veja o arquivo [LICENSE](L
 Desenvolvido com ❤️ para a comunidade brasileira
 
 </div>
-
-## 📄 Licença
-
-Este projeto está licenciado sob a **Licença MIT**. Veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-## 🙏 Créditos
-
-- **Dados:** Receita Federal do Brasil
-- **Mapas:** OpenStreetMap
-- **Ícones:** Lucide
-- **UI:** shadcn/ui
-- **Comunidade:** Desenvolvedores open-source
-
-## 📞 Suporte
-
-- **GitHub Issues:** [Reportar problemas](https://github.com/WalissonVinicius/cnpjfy/issues)
-- **Discussões:** [GitHub Discussions](https://github.com/WalissonVinicius/cnpjfy/discussions)
-
----
-
-<div align="center">
-
-**[🏠 CNPJfy](https://www.cnpjfy.walisson.dev)** • **[📚 Documentação](#-funcionalidades)** • **[🐛 Issues](https://github.com/WalissonVinicius/cnpjfy/issues)**
-
-Desenvolvido com ❤️ para a comunidade brasileira
-
-</div>
