@@ -1,0 +1,24 @@
+{
+  "title": "Consulta de CNPJ",
+  "subtitle": "Busque informações detalhadas de empresas brasileiras",
+  "searchPlaceholder": "00.000.000/0001-91",
+  "searchLabel": "Digite o CNPJ da empresa",
+  "searchButton": "Buscar empresa",
+  "recentSearches": "Buscas recentes",
+  "trending": "Empresas em destaque",
+  "noRecentSearches": "Nenhuma busca recente",
+  "noTrending": "Nenhuma empresa em destaque",
+  "invalidCnpj": "CNPJ inválido",
+  "searchHotkey": "Pressione Ctrl+K para buscar",
+  "features": {
+    "title": "Funcionalidades",
+    "realtime": "Dados em tempo real",
+    "realtimeDesc": "Informações atualizadas da Receita Federal",
+    "history": "Histórico de buscas",
+    "historyDesc": "Mantenha um registro das suas consultas",
+    "export": "Exportação de dados",
+    "exportDesc": "Exporte em JSON, CSV, XLSX ou PDF",
+    "offline": "Funciona offline",
+    "offlineDesc": "Acesse seu histórico mesmo sem internet"
+  }
+}

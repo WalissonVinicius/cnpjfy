@@ -1,0 +1,19 @@
+{
+  "title": "Comparar empresas",
+  "subtitle": "Compare até 4 empresas lado a lado",
+  "addCompany": "Adicionar empresa",
+  "removeCompany": "Remover empresa",
+  "searchCompany": "Buscar empresa para comparar",
+  "noCompanies": "Nenhuma empresa selecionada",
+  "noCompaniesDesc": "Adicione empresas para começar a comparação",
+  "comparison": "Comparação",
+  "basicComparison": "Informações básicas",
+  "addressComparison": "Endereços",
+  "cnaeComparison": "Atividades (CNAE)",
+  "partnersComparison": "Quadro societário",
+  "timelineComparison": "Linha do tempo",
+  "exportComparison": "Exportar comparação",
+  "clearComparison": "Limpar comparação",
+  "maxCompanies": "Máximo de 4 empresas",
+  "companyAlreadyAdded": "Empresa já adicionada à comparação"
+}

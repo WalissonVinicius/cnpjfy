@@ -1,0 +1,20 @@
+{
+  "notFound": "Empresa não encontrada",
+  "notFoundDesc": "O CNPJ informado não foi encontrado na base de dados",
+  "invalidCnpj": "CNPJ inválido",
+  "invalidCnpjDesc": "Por favor, verifique se o CNPJ foi digitado corretamente",
+  "networkError": "Erro de conexão",
+  "networkErrorDesc": "Verifique sua conexão com a internet e tente novamente",
+  "serverError": "Erro no servidor",
+  "serverErrorDesc": "Ocorreu um erro interno. Tente novamente em alguns minutos",
+  "rateLimitError": "Muitas requisições",
+  "rateLimitErrorDesc": "Você fez muitas consultas. Aguarde alguns minutos antes de tentar novamente",
+  "unknownError": "Erro desconhecido",
+  "unknownErrorDesc": "Ocorreu um erro inesperado. Tente novamente",
+  "offlineError": "Sem conexão",
+  "offlineErrorDesc": "Você está offline. Algumas funcionalidades podem não estar disponíveis",
+  "exportError": "Erro na exportação",
+  "exportErrorDesc": "Não foi possível exportar os dados. Tente novamente",
+  "storageError": "Erro de armazenamento",
+  "storageErrorDesc": "Não foi possível salvar os dados localmente"
+}

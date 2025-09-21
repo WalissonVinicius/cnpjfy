@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradiente de fundo -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Hexágono de fundo com gradiente -->
+  <path d="M256 32L416 144V368L256 480L96 368V144L256 32Z" fill="url(#gradient)" stroke="#4F46E5" stroke-width="16"/>
+  
+  <!-- Monograma "fy" com efeito de sombra -->
+  <text x="256" y="336" font-family="Inter, sans-serif" font-size="160" font-weight="700" text-anchor="middle" fill="white" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.3))">fy</text>
+</svg>

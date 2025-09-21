@@ -1,0 +1,12 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="4" fill="#3B82F6"/>
+  <rect x="2" y="2" width="28" height="28" rx="2" fill="white"/>
+  
+  <!-- Building icon -->
+  <rect x="8" y="10" width="16" height="16" rx="1" fill="#3B82F6"/>
+  <rect x="10" y="12" width="3" height="3" rx="0.5" fill="white"/>
+  <rect x="19" y="12" width="3" height="3" rx="0.5" fill="white"/>
+  <rect x="10" y="17" width="3" height="3" rx="0.5" fill="white"/>
+  <rect x="19" y="17" width="3" height="3" rx="0.5" fill="white"/>
+  <rect x="14" y="21" width="4" height="5" rx="0.5" fill="white"/>
+</svg>

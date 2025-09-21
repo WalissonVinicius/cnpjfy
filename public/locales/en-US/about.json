@@ -1,0 +1,47 @@
+{
+  "title": "About CNPJfy",
+  "subtitle": "Free Brazilian business data lookup",
+  "description": "CNPJfy is an open-source platform that provides public data from the Brazilian Federal Revenue in a free and accessible way. Our mission is to democratize access to business information in Brazil.",
+  "features": {
+    "title": "Features",
+    "openSource": "Open source",
+    "openSourceDesc": "Fully open-source project on GitHub",
+    "freeAccess": "Free access",
+    "freeAccessDesc": "Unlimited queries at no cost",
+    "realTimeData": "Updated data",
+    "realTimeDataDesc": "Always updated information from Federal Revenue",
+    "offlineSupport": "Offline support",
+    "offlineSupportDesc": "Works even without internet connection"
+  },
+  "technology": {
+    "title": "Technology",
+    "description": "Built with the most modern web technologies to ensure performance and accessibility.",
+    "frontend": "Modern frontend with Next.js 14",
+    "backend": "Efficient backend in C#",
+    "database": "Optimized data in Parquet",
+    "pwa": "Progressive Web App (PWA)"
+  },
+  "contribute": {
+    "title": "How to contribute",
+    "description": "CNPJfy is a community project. Your contribution is very welcome!",
+    "github": "Visit our GitHub",
+    "issues": "Report issues",
+    "pullRequests": "Submit improvements",
+    "documentation": "Improve documentation"
+  },
+  "license": {
+    "title": "License",
+    "description": "This project is licensed under the MIT license. You can use, modify and distribute freely."
+  },
+  "credits": {
+    "title": "Credits",
+    "receita": "Data provided by Brazilian Federal Revenue",
+    "openstreetmap": "Maps provided by OpenStreetMap",
+    "community": "Developed by the open-source community"
+  },
+  "contact": {
+    "title": "Contact",
+    "github": "GitHub",
+    "issues": "Issues and suggestions"
+  }
+}

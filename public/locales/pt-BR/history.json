@@ -1,0 +1,22 @@
+{
+  "title": "Histórico de buscas",
+  "subtitle": "Suas consultas anteriores",
+  "empty": "Nenhuma busca realizada ainda",
+  "emptyDesc": "Suas consultas aparecerão aqui",
+  "searchHistory": "Buscar no histórico",
+  "clearAll": "Limpar tudo",
+  "clearConfirm": "Tem certeza que deseja limpar todo o histórico?",
+  "exportHistory": "Exportar histórico",
+  "filters": "Filtros",
+  "filterByDate": "Filtrar por data",
+  "filterByStatus": "Filtrar por situação",
+  "sortBy": "Ordenar por",
+  "sortByDate": "Data",
+  "sortByName": "Nome",
+  "sortByStatus": "Situação",
+  "ascending": "Crescente",
+  "descending": "Decrescente",
+  "lastSearched": "Última busca",
+  "searchCount": "Buscas realizadas",
+  "offlineAvailable": "Disponível offline"
+}

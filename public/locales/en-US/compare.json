@@ -1,0 +1,19 @@
+{
+  "title": "Compare companies",
+  "subtitle": "Compare up to 4 companies side by side",
+  "addCompany": "Add company",
+  "removeCompany": "Remove company",
+  "searchCompany": "Search company to compare",
+  "noCompanies": "No companies selected",
+  "noCompaniesDesc": "Add companies to start comparison",
+  "comparison": "Comparison",
+  "basicComparison": "Basic information",
+  "addressComparison": "Addresses",
+  "cnaeComparison": "Activities (CNAE)",
+  "partnersComparison": "Partners",
+  "timelineComparison": "Timeline",
+  "exportComparison": "Export comparison",
+  "clearComparison": "Clear comparison",
+  "maxCompanies": "Maximum of 4 companies",
+  "companyAlreadyAdded": "Company already added to comparison"
+}

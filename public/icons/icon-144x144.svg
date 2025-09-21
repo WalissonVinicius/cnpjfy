@@ -1,0 +1,7 @@
+<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexágono de fundo -->
+  <path d="M72 9L117 40.5V103.5L72 135L27 103.5V40.5L72 9Z" fill="#2563EB" stroke="#1D4ED8" stroke-width="4.5"/>
+  
+  <!-- Monograma "fy" -->
+  <text x="72" y="94.5" font-family="Inter, sans-serif" font-size="45" font-weight="600" text-anchor="middle" fill="white">fy</text>
+</svg>

@@ -1,0 +1,47 @@
+{
+  "title": "Sobre o CNPJfy",
+  "subtitle": "Consulta gratuita de dados empresariais brasileiros",
+  "description": "O CNPJfy é uma plataforma open-source que disponibiliza dados públicos da Receita Federal de forma gratuita e acessível. Nossa missão é democratizar o acesso à informação empresarial no Brasil.",
+  "features": {
+    "title": "Funcionalidades",
+    "openSource": "Código aberto",
+    "openSourceDesc": "Projeto totalmente open-source no GitHub",
+    "freeAccess": "Acesso gratuito",
+    "freeAccessDesc": "Consultas ilimitadas sem custo",
+    "realTimeData": "Dados atualizados",
+    "realTimeDataDesc": "Informações sempre atualizadas da Receita Federal",
+    "offlineSupport": "Suporte offline",
+    "offlineSupportDesc": "Funciona mesmo sem conexão com a internet"
+  },
+  "technology": {
+    "title": "Tecnologia",
+    "description": "Desenvolvido com as mais modernas tecnologias web para garantir performance e acessibilidade.",
+    "frontend": "Frontend moderno com Next.js 14",
+    "backend": "Backend eficiente em C#",
+    "database": "Dados otimizados em Parquet",
+    "pwa": "Progressive Web App (PWA)"
+  },
+  "contribute": {
+    "title": "Como contribuir",
+    "description": "O CNPJfy é um projeto comunitário. Sua contribuição é muito bem-vinda!",
+    "github": "Acesse nosso GitHub",
+    "issues": "Reporte problemas",
+    "pullRequests": "Envie melhorias",
+    "documentation": "Melhore a documentação"
+  },
+  "license": {
+    "title": "Licença",
+    "description": "Este projeto está licenciado sob a licença MIT. Você pode usar, modificar e distribuir livremente."
+  },
+  "credits": {
+    "title": "Créditos",
+    "receita": "Dados fornecidos pela Receita Federal do Brasil",
+    "openstreetmap": "Mapas fornecidos pelo OpenStreetMap",
+    "community": "Desenvolvido pela comunidade open-source"
+  },
+  "contact": {
+    "title": "Contato",
+    "github": "GitHub",
+    "issues": "Problemas e sugestões"
+  }
+}

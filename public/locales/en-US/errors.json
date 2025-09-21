@@ -1,0 +1,20 @@
+{
+  "notFound": "Company not found",
+  "notFoundDesc": "The informed CNPJ was not found in the database",
+  "invalidCnpj": "Invalid CNPJ",
+  "invalidCnpjDesc": "Please check if the CNPJ was typed correctly",
+  "networkError": "Connection error",
+  "networkErrorDesc": "Check your internet connection and try again",
+  "serverError": "Server error",
+  "serverErrorDesc": "An internal error occurred. Try again in a few minutes",
+  "rateLimitError": "Too many requests",
+  "rateLimitErrorDesc": "You made too many queries. Wait a few minutes before trying again",
+  "unknownError": "Unknown error",
+  "unknownErrorDesc": "An unexpected error occurred. Try again",
+  "offlineError": "No connection",
+  "offlineErrorDesc": "You are offline. Some features may not be available",
+  "exportError": "Export error",
+  "exportErrorDesc": "Could not export data. Try again",
+  "storageError": "Storage error",
+  "storageErrorDesc": "Could not save data locally"
+}

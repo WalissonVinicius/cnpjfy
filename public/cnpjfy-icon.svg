@@ -1,0 +1,33 @@
+<!-- CNPJfy - Logomark -->
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">CNPJfy Logomark</title>
+  <desc id="desc">Rounded gradient square with a simplified document and magnifying glass to represent searching Brazilian company records.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7A5CFF"/>
+      <stop offset="50%" stop-color="#9653FF"/>
+      <stop offset="100%" stop-color="#C84CF9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gradient container -->
+  <rect x="8" y="8" width="240" height="240" rx="44" fill="url(#g)"/>
+
+  <!-- Document card -->
+  <g fill="#FFFFFF">
+    <path d="M70 72c0-7 5-12 12-12h64l32 32v88c0 7-5 12-12 12H82c-7 0-12-5-12-12V72z" opacity=".95"/>
+    <!-- Folded corner -->
+    <path d="M146 60v20c0 6 4 10 10 10h20l-30-30z" opacity=".92"/>
+    <!-- Text lines -->
+    <rect x="88" y="108" width="72" height="10" rx="5" opacity=".75"/>
+    <rect x="88" y="130" width="60" height="10" rx="5" opacity=".65"/>
+    <rect x="88" y="152" width="80" height="10" rx="5" opacity=".55"/>
+  </g>
+
+  <!-- Magnifying glass (search) -->
+  <g transform="translate(134,148)">
+    <circle cx="36" cy="36" r="28" fill="#FFFFFF" opacity=".95"/>
+    <circle cx="36" cy="36" r="18" fill="url(#g)"/>
+    <rect x="60" y="60" width="12" height="30" rx="6" transform="rotate(45 66 75)" fill="#FFFFFF" opacity=".95"/>
+  </g>
+</svg>

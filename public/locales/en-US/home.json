@@ -1,0 +1,24 @@
+{
+  "title": "CNPJ Lookup",
+  "subtitle": "Search detailed information about Brazilian companies",
+  "searchPlaceholder": "00.000.000/0001-91",
+  "searchLabel": "Enter the company's CNPJ",
+  "searchButton": "Search company",
+  "recentSearches": "Recent searches",
+  "trending": "Featured companies",
+  "noRecentSearches": "No recent searches",
+  "noTrending": "No featured companies",
+  "invalidCnpj": "Invalid CNPJ",
+  "searchHotkey": "Press Ctrl+K to search",
+  "features": {
+    "title": "Features",
+    "realtime": "Real-time data",
+    "realtimeDesc": "Updated information from Federal Revenue",
+    "history": "Search history",
+    "historyDesc": "Keep a record of your queries",
+    "export": "Data export",
+    "exportDesc": "Export to JSON, CSV, XLSX or PDF",
+    "offline": "Works offline",
+    "offlineDesc": "Access your history even without internet"
+  }
+}

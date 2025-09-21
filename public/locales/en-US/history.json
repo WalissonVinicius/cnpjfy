@@ -1,0 +1,22 @@
+{
+  "title": "Search history",
+  "subtitle": "Your previous queries",
+  "empty": "No searches performed yet",
+  "emptyDesc": "Your queries will appear here",
+  "searchHistory": "Search history",
+  "clearAll": "Clear all",
+  "clearConfirm": "Are you sure you want to clear all history?",
+  "exportHistory": "Export history",
+  "filters": "Filters",
+  "filterByDate": "Filter by date",
+  "filterByStatus": "Filter by status",
+  "sortBy": "Sort by",
+  "sortByDate": "Date",
+  "sortByName": "Name",
+  "sortByStatus": "Status",
+  "ascending": "Ascending",
+  "descending": "Descending",
+  "lastSearched": "Last searched",
+  "searchCount": "Searches performed",
+  "offlineAvailable": "Available offline"
+}
