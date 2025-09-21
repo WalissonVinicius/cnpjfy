@@ -22,7 +22,7 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://cnpjfy.com'),
+  metadataBase: new URL('https://cnpjfy.walisson.dev/'),
   alternates: {
     canonical: '/',
     languages: {
@@ -38,7 +38,7 @@ export const metadata = {
   openGraph: {
     title: 'CNPJfy — O retrato inteligente do CNPJ',
     description: 'Consulte informações de empresas brasileiras de forma gratuita e rápida.',
-    url: 'https://cnpjfy.com',
+    url: 'https://cnpjfy.walisson.dev/',
     siteName: 'CNPJfy',
     locale: 'pt_BR',
     type: 'website',
@@ -108,7 +108,7 @@ export default function RootLayout({
                     <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
                       Desenvolvido pela comunidade{' '}
                       <a
-                        href="https://github.com/opencnpj"
+                        href="https://github.com/WalissonVinicius/cnpjfy"
                         target="_blank"
                         rel="noreferrer"
                         className="font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 underline underline-offset-4 transition-colors duration-300"
