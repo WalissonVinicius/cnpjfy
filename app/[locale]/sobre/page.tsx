@@ -89,7 +89,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               asChild
               className="bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              <Link href="https://github.com/cuducos/opencnpj" target="_blank">
+              <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
                 <Github className="h-5 w-5 mr-2" />
                 Ver no GitHub
                 <ExternalLink className="h-5 w-5 ml-2" />
@@ -311,7 +311,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             </div>
             <div className="flex gap-4 pt-4">
               <Button asChild>
-                <Link href="https://github.com/cuducos/opencnpj" target="_blank">
+                <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
                   <Star className="h-4 w-4 mr-2" />
                   Dar Estrela no GitHub
                 </Link>
@@ -332,7 +332,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             <p className="text-sm text-muted-foreground">
               Este projeto é licenciado sob a{' '}
               <Link
-                href="https://github.com/cuducos/opencnpj/blob/main/LICENSE"
+                href="https://github.com/WalissonVinicius/cnpjfy/blob/main/LICENSE"
                 target="_blank"
                 className="text-primary hover:underline"
               >
