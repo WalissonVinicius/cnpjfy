@@ -1,5 +1,16 @@
 # CNPJfy — O retrato inteligente do CNPJ
 
+<div align="center">
+
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![PWA](https://img.shields.io/badge/PWA-Ready-5A0FC8?style=for-the-badge&logo=pwa)](https://web.dev/progressive-web-apps/)
+
+**[🌐 Acesse o CNPJfy](https://www.cnpjfy.walisson.dev)** • **[📚 Documentação](#-funcionalidades)** • **[🐛 Issues](https://github.com/WalissonVinicius/cnpjfy/issues)**
+
+</div>
+
 > 🏢 Interface moderna e intuitiva para consulta gratuita de dados empresariais brasileiros com recursos avançados.
 
 ## 🚀 Rodando o projeto
@@ -38,6 +49,10 @@
    ```
 
 4. **Acesse:** http://localhost:3000
+
+## 🌐 Demo Online
+
+**[🚀 Acesse o CNPJfy](https://www.cnpjfy.walisson.dev)** - Versão em produção
 
 ## 🔌 Integração com API
 
@@ -256,152 +271,18 @@ Este projeto está licenciado sob a **Licença MIT**. Veja o arquivo [LICENSE](L
 
 ## 📞 Suporte
 
-- **GitHub Issues:** [Reportar problemas](https://github.com/seu-usuario/cnpjfy/issues)
-- **Discussões:** [GitHub Discussions](https://github.com/seu-usuario/cnpjfy/discussions)
+- **GitHub Issues:** [Reportar problemas](https://github.com/WalissonVinicius/cnpjfy/issues)
+- **Discussões:** [GitHub Discussions](https://github.com/WalissonVinicius/cnpjfy/discussions)
 
 ---
 
 <div align="center">
 
-**[🏠 CNPJfy](https://cnpjfy.com)** • **[📚 API Docs](/api-docs)** • **[🐛 Issues](https://github.com/seu-usuario/cnpjfy/issues)**
+**[🏠 CNPJfy](https://www.cnpjfy.walisson.dev)** • **[📚 Documentação](#-funcionalidades)** • **[🐛 Issues](https://github.com/WalissonVinicius/cnpjfy/issues)**
 
 Desenvolvido com ❤️ para a comunidade brasileira
 
 </div>
-
-- **Ctrl/Cmd + K:** Busca rápida
-- **F:** Favoritar empresa (na página da empresa)
-- **E:** Exportar dados
-- **S:** Compartilhar
-
-### 🎨 Interface
-
-- **Tema escuro/claro** com detecção automática
-- **Design responsivo** mobile-first
-- **Acessibilidade** (ARIA, foco visível, contraste)
-- **Componentes shadcn/ui** para consistência
-
-## 🏗️ Arquitetura
-
-### Stack Tecnológica
-
-- **Framework:** Next.js 14 (App Router)
-- **Linguagem:** TypeScript
-- **Estilização:** TailwindCSS + shadcn/ui
-- **Ícones:** Lucide React
-- **Estado:** React Query (TanStack Query)
-- **Validação:** Zod
-- **Gráficos:** Recharts
-- **Mapas:** Leaflet + React Leaflet
-- **Armazenamento:** IndexedDB (idb) + LocalStorage
-- **PWA:** Workbox (injectManifest)
-- **Exportação:** SheetJS (XLSX), jsPDF
-- **Testes:** Jest + Testing Library, Playwright
-- **Qualidade:** ESLint + Prettier + Husky
-
-### Estrutura de Pastas
-
-```
-├── app/[locale]/                 # Páginas com roteamento i18n
-│   ├── page.tsx                 # Home
-│   ├── empresa/[cnpj]/page.tsx  # Detalhes da empresa
-│   ├── historico/page.tsx       # Histórico de buscas
-│   ├── comparar/page.tsx        # Comparação de empresas
-│   └── sobre/page.tsx           # Sobre o projeto
-├── components/                   # Componentes React
-│   ├── ui/                      # Componentes shadcn/ui
-│   ├── CompanyHeader.tsx        # Cabeçalho da empresa
-│   ├── CompanySearch.tsx        # Busca de CNPJ
-│   ├── CNAEChart.tsx           # Gráfico de CNAEs
-│   └── MapView.tsx             # Mapa interativo
-├── lib/                         # Utilitários e configurações
-│   ├── api.ts                  # Cliente da API OpenCNPJ
-│   ├── cnpj.ts                 # Validação e formatação
-│   ├── db/index.ts             # IndexedDB wrapper
-│   ├── storage/index.ts        # LocalStorage helpers
-│   └── exports/                # Funções de exportação
-├── public/
-│   ├── locales/                # Traduções i18n
-│   ├── manifest.json           # PWA manifest
-│   └── icons/                  # Ícones PWA
-└── middleware.ts               # Redirecionamento i18n
-```
-
-## 🧪 Testes
-
-### Executar testes
-
-```bash
-# Testes unitários
-npm test
-
-# Testes e2e
-npm run test:e2e
-
-# Storybook (componentes)
-npm run storybook
-```
-
-### Cobertura
-
-- **Unitários:** Validação CNPJ, formatadores, componentes principais
-- **E2E:** Fluxo completo (buscar → visualizar → favoritar → exportar)
-- **Storybook:** Componentes com diferentes estados e dados mock
-
-## 🚀 Deploy e CI/CD
-
-### Build de produção
-
-```bash
-npm run build
-npm start
-```
-
-### GitHub Actions
-
-O projeto inclui CI/CD automático que executa:
-
-- ✅ Lint (ESLint)
-- ✅ Testes unitários
-- ✅ Build de produção
-- ✅ Testes e2e (Playwright)
-
-## 🤝 Contribuindo
-
-### Desenvolvimento
-
-1. **Fork** o repositório
-2. **Crie uma branch:** `git checkout -b feature/nova-funcionalidade`
-3. **Commit suas mudanças:** `git commit -m 'feat: adiciona nova funcionalidade'`
-4. **Push para a branch:** `git push origin feature/nova-funcionalidade`
-5. **Abra um Pull Request**
-
-### Padrões de Código
-
-- **Commits:** Conventional Commits (feat, fix, docs, etc.)
-- **Código:** ESLint + Prettier (configuração automática)
-- **Testes:** Obrigatórios para novas funcionalidades
-- **Acessibilidade:** Seguir diretrizes WCAG 2.1
-
-## 📋 Roadmap
-
-### Próximas funcionalidades
-
-- [ ] **Geocodificação automática** para endereços (Nominatim)
-- [ ] **Notificações push** para atualizações de empresas favoritas
-- [ ] **Comparação avançada** com métricas calculadas
-- [ ] **API GraphQL** para consultas otimizadas
-- [ ] **Modo offline completo** com sincronização
-- [ ] **Relatórios personalizados** em PDF
-- [ ] **Integração com redes sociais** para compartilhamento
-
-### Melhorias técnicas
-
-- [ ] **Server-side rendering** para SEO
-- [ ] **Edge caching** com Vercel/Cloudflare
-- [ ] **Monitoramento** com Sentry
-- [ ] **Analytics** com Plausible/Google Analytics
-- [ ] **Testes de performance** com Lighthouse CI
 
 ## 📄 Licença
 
@@ -417,16 +298,15 @@ Este projeto está licenciado sob a **Licença MIT**. Veja o arquivo [LICENSE](L
 
 ## 📞 Suporte
 
-- **GitHub Issues:** [Reportar problemas](https://github.com/opencnpj/opencnpj-web/issues)
-- **Discussões:** [GitHub Discussions](https://github.com/opencnpj/opencnpj-web/discussions)
-- **Documentação:** [Wiki do projeto](https://github.com/opencnpj/opencnpj-web/wiki)
+- **GitHub Issues:** [Reportar problemas](https://github.com/WalissonVinicius/cnpjfy/issues)
+- **Discussões:** [GitHub Discussions](https://github.com/WalissonVinicius/cnpjfy/discussions)
 
 ---
 
 <div align="center">
 
-**[🏠 CNPJfy](https://cnpjfy.com)** • **[📚 Documentação](https://docs.cnpjfy.com)** • **[🐛 Issues](https://github.com/cnpjfy/cnpjfy-web/issues)**
+**[🏠 CNPJfy](https://www.cnpjfy.walisson.dev)** • **[📚 Documentação](#-funcionalidades)** • **[🐛 Issues](https://github.com/WalissonVinicius/cnpjfy/issues)**
 
-Feito com ❤️ pela comunidade open-source brasileira
+Desenvolvido com ❤️ para a comunidade brasileira
 
 </div>
