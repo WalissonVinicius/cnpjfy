@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cnpjMask, cnpjClean, isValidCnpj } from '@/lib/cnpj';
 import { useToast } from '@/components/ui/use-toast';
+import { useTranslation } from '@/lib/i18n';
 
 interface HomePageProps {
   params: { locale: string };
@@ -18,6 +19,7 @@ export default function HomePage({ params }: HomePageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const { t } = useTranslation('home');
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,8 +28,8 @@ export default function HomePage({ params }: HomePageProps) {
 
     if (!isValidCnpj(cleanCnpj)) {
       toast({
-        title: "CNPJ inválido",
-        description: "Por favor, verifique se o CNPJ foi digitado corretamente.",
+        title: t('invalidCnpj'),
+        description: t('invalidCnpjDesc', 'Por favor, verifique se o CNPJ foi digitado corretamente.'),
         variant: "destructive",
       });
       return;
@@ -40,8 +42,8 @@ export default function HomePage({ params }: HomePageProps) {
       router.push(`/${params.locale}/empresa/${cleanCnpj}`);
     } catch (error) {
       toast({
-        title: "Erro",
-        description: "Ocorreu um erro ao buscar a empresa. Tente novamente.",
+        title: t('error', 'Erro'),
+        description: t('searchError', 'Ocorreu um erro ao buscar a empresa. Tente novamente.'),
         variant: "destructive",
       });
     } finally {
@@ -57,23 +59,23 @@ export default function HomePage({ params }: HomePageProps) {
   const features = [
     {
       icon: Building2,
-      title: "Dados em tempo real",
-      description: "Informações atualizadas da Receita Federal do Brasil",
+      title: t('features.realtime'),
+      description: t('features.realtimeDesc'),
     },
     {
       icon: Clock,
-      title: "Histórico de buscas",
-      description: "Mantenha um registro das suas consultas anteriores",
+      title: t('features.history'),
+      description: t('features.historyDesc'),
     },
     {
       icon: Download,
-      title: "Exportação de dados",
-      description: "Exporte em JSON, CSV, XLSX ou PDF",
+      title: t('features.export'),
+      description: t('features.exportDesc'),
     },
     {
       icon: TrendingUp,
-      title: "Funciona offline",
-      description: "Acesse seu histórico mesmo sem internet",
+      title: t('features.offline'),
+      description: t('features.offlineDesc'),
     },
   ];
 
@@ -84,26 +86,25 @@ export default function HomePage({ params }: HomePageProps) {
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-brand-500/20 to-accent-500/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-r from-accent-500/20 to-cyan-500/20 rounded-full blur-3xl"></div>
       </div>
-      
+
       {/* Hero Section */}
       <div className="text-center space-y-6 max-w-4xl relative z-10">
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-accent-500/10 border border-brand-500/20 mb-4">
-          <span className="text-sm font-medium text-brand-600 dark:text-brand-400">✨ Nova experiência visual</span>
+          <span className="text-sm font-medium text-brand-600 dark:text-brand-400">{t('newExperience', '✨ Nova experiência visual')}</span>
         </div>
-        
+
         <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
           <span className="bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-pulse">
             CNPJfy
           </span>
         </h1>
-        
+
         <p className="text-2xl text-muted-foreground font-semibold bg-gradient-to-r from-gray-700 to-gray-500 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
-          O retrato inteligente do CNPJ
+          {t('subtitle')}
         </p>
-        
+
         <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Descubra informações detalhadas de empresas brasileiras com dados atualizados da Receita Federal. 
-          Interface moderna, rápida e intuitiva.
+          {t('description')}
         </p>
       </div>
 
@@ -116,7 +117,7 @@ export default function HomePage({ params }: HomePageProps) {
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand-500" />
               <Input
                 type="text"
-                placeholder="00.000.000/0001-91"
+                placeholder={t('searchPlaceholder')}
                 value={cnpjInput}
                 onChange={handleInputChange}
                 className="pl-12 pr-4 text-center text-lg h-14 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300"
@@ -133,23 +134,23 @@ export default function HomePage({ params }: HomePageProps) {
             {isLoading ? (
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                Buscando...
+                {t('loading', 'Buscando...')}
               </div>
             ) : (
               <div className="flex items-center gap-2">
                 <Search className="w-5 h-5" />
-                Buscar empresa
+                {t('searchButton')}
               </div>
             )}
           </Button>
         </form>
 
         <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <span>Pressione</span>
+          <span>{t('pressKey', 'Pressione')}</span>
           <kbd className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">Ctrl</kbd>
           <span>+</span>
           <kbd className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">K</kbd>
-          <span>para buscar rapidamente</span>
+          <span>{t('quickSearch', 'para buscar rapidamente')}</span>
         </div>
       </div>
 
@@ -157,13 +158,13 @@ export default function HomePage({ params }: HomePageProps) {
       <div className="w-full max-w-6xl mt-20 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-4">
-            Funcionalidades
+            {t('features.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tudo que você precisa para consultar empresas de forma eficiente e moderna
+            {t('featuresDescription', 'Tudo que você precisa para consultar empresas de forma eficiente e moderna')}
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -191,26 +192,26 @@ export default function HomePage({ params }: HomePageProps) {
 
       {/* Quick Links */}
       <div className="flex flex-wrap justify-center gap-6 mt-16 relative z-10">
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           asChild
           className="h-12 px-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
         >
-          <a href={`/${params.locale}/historico`}>Ver histórico</a>
+          <a href={`/${params.locale}/historico`}>{t('viewHistory', 'Ver histórico')}</a>
         </Button>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           asChild
           className="h-12 px-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-accent-200 dark:border-accent-800 hover:border-accent-500 hover:bg-accent-50 dark:hover:bg-accent-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
         >
-          <a href={`/${params.locale}/comparar`}>Comparar empresas</a>
+          <a href={`/${params.locale}/comparar`}>{t('compareCompanies', 'Comparar empresas')}</a>
         </Button>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           asChild
           className="h-12 px-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-purple-200 dark:border-purple-800 hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
         >
-          <a href={`/${params.locale}/sobre`}>Sobre o projeto</a>
+          <a href={`/${params.locale}/sobre`}>{t('aboutProject', 'Sobre o projeto')}</a>
         </Button>
       </div>
     </div>

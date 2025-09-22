@@ -1,47 +1,92 @@
 {
   "title": "About CNPJfy",
-  "subtitle": "Free Brazilian business data lookup",
-  "description": "CNPJfy is an open-source platform that provides public data from the Brazilian Federal Revenue in a free and accessible way. Our mission is to democratize access to business information in Brazil.",
+  "subtitle": "A free and open source platform for Brazilian business data queries",
+  "viewOnGithub": "View on GitHub",
+  "mission": {
+    "title": "Our Mission",
+    "description1": "Democratize access to Brazilian business information by providing a free, fast and reliable platform for CNPJ data queries.",
+    "description2": "We believe that public information should be accessible to everyone, without financial or technical barriers. That's why we keep CNPJfy as a 100% free and open source project."
+  },
   "features": {
-    "title": "Features",
-    "openSource": "Open source",
-    "openSourceDesc": "Fully open-source project on GitHub",
-    "freeAccess": "Free access",
-    "freeAccessDesc": "Unlimited queries at no cost",
-    "realTimeData": "Updated data",
-    "realTimeDataDesc": "Always updated information from Federal Revenue",
-    "offlineSupport": "Offline support",
-    "offlineSupportDesc": "Works even without internet connection"
+    "title": "Key Features",
+    "updatedData": {
+      "title": "Updated Data",
+      "description": "Information always updated directly from the Federal Revenue"
+    },
+    "fastQuery": {
+      "title": "Fast Query",
+      "description": "Instant results with optimized interface"
+    },
+    "free": {
+      "title": "Completely Free",
+      "description": "No limits, no registration, no hidden costs"
+    },
+    "openSource": {
+      "title": "Open Source",
+      "description": "Open and transparent code for the entire community"
+    }
   },
-  "technology": {
-    "title": "Technology",
-    "description": "Built with the most modern web technologies to ensure performance and accessibility.",
-    "frontend": "Modern frontend with Next.js 14",
-    "backend": "Efficient backend in C#",
-    "database": "Optimized data in Parquet",
-    "pwa": "Progressive Web App (PWA)"
+  "technologies": {
+    "title": "Technologies Used",
+    "nextjs": "Modern React framework",
+    "typescript": "Static typing",
+    "tailwind": "Utility-first styling",
+    "shadcn": "Accessible components",
+    "reactQuery": "State management",
+    "indexeddb": "Offline cache"
   },
-  "contribute": {
-    "title": "How to contribute",
-    "description": "CNPJfy is a community project. Your contribution is very welcome!",
-    "github": "Visit our GitHub",
-    "issues": "Report issues",
-    "pullRequests": "Submit improvements",
-    "documentation": "Improve documentation"
+  "dataSource": {
+    "title": "Data Source",
+    "description": "All data is obtained directly from public files made available by the Federal Revenue of Brazil, ensuring authenticity and constant updating of information.",
+    "badges": {
+      "receita": "Federal Revenue",
+      "public": "Public Data",
+      "monthly": "Monthly Updates",
+      "official": "100% Official"
+    }
+  },
+  "contributors": {
+    "title": "Contributors",
+    "walisson": {
+      "role": "CNPJfy Creator",
+      "description": "Frontend developer"
+    },
+    "hitmasu": {
+      "role": "OpenCNPJ Developer",
+      "description": "Main API and datasets developer"
+    }
+  },
+  "statistics": {
+    "title": "Project Statistics",
+    "companies": "Companies in Database",
+    "free": "Free",
+    "availability": "Availability",
+    "source": "Source"
+  },
+  "support": {
+    "title": "Support the Project",
+    "description": "CNPJfy is maintained by volunteers and depends on the community to continue operating. You can help in several ways:",
+    "developers": {
+      "title": "For Developers",
+      "contribute": "Contribute code on GitHub",
+      "report": "Report bugs and suggestions",
+      "docs": "Improve documentation",
+      "share": "Share the project"
+    },
+    "users": {
+      "title": "For Users",
+      "star": "Give a star on GitHub",
+      "share": "Share with others",
+      "report": "Report problems",
+      "suggest": "Suggest improvements"
+    },
+    "starButton": "Star on GitHub",
+    "contactButton": "Get in Touch",
+    "emailCopied": "Copied to clipboard"
   },
   "license": {
-    "title": "License",
-    "description": "This project is licensed under the MIT license. You can use, modify and distribute freely."
-  },
-  "credits": {
-    "title": "Credits",
-    "receita": "Data provided by Brazilian Federal Revenue",
-    "openstreetmap": "Maps provided by OpenStreetMap",
-    "community": "Developed by the open-source community"
-  },
-  "contact": {
-    "title": "Contact",
-    "github": "GitHub",
-    "issues": "Issues and suggestions"
+    "text": "This project is licensed under the",
+    "mit": "MIT License",
+    "madeWith": "Made with ❤️ for the Brazilian community"
   }
 }

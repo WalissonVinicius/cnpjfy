@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { History, GitCompare, Info, BookOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/lib/i18n';
 
 interface NavigationProps {
   locale: string;
@@ -12,34 +13,35 @@ interface NavigationProps {
 
 export function Navigation({ locale }: NavigationProps) {
   const pathname = usePathname();
+  const { t } = useTranslation('navigation');
 
   const navigation = [
     {
-      name: 'Início',
+      name: t('home', 'Início'),
       href: `/${locale}`,
       icon: History, // Usando History temporariamente para o ícone de Início
       current: pathname === `/${locale}`,
     },
     {
-      name: 'Histórico',
+      name: t('history', 'Histórico'),
       href: `/${locale}/historico`,
       icon: History,
       current: pathname.startsWith(`/${locale}/historico`),
     },
     {
-      name: 'Comparar',
+      name: t('compare', 'Comparar'),
       href: `/${locale}/comparar`,
       icon: GitCompare,
       current: pathname.startsWith(`/${locale}/comparar`),
     },
     {
-      name: 'API Docs',
+      name: t('apiDocs', 'API Docs'),
       href: `/${locale}/api-docs`,
       icon: BookOpen,
       current: pathname.startsWith(`/${locale}/api-docs`),
     },
     {
-      name: 'Sobre',
+      name: t('about', 'Sobre'),
       href: `/${locale}/sobre`,
       icon: Info,
       current: pathname.startsWith(`/${locale}/sobre`),

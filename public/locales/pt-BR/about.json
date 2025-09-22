@@ -1,47 +1,92 @@
 {
   "title": "Sobre o CNPJfy",
-  "subtitle": "Consulta gratuita de dados empresariais brasileiros",
-  "description": "O CNPJfy é uma plataforma open-source que disponibiliza dados públicos da Receita Federal de forma gratuita e acessível. Nossa missão é democratizar o acesso à informação empresarial no Brasil.",
+  "subtitle": "Uma plataforma gratuita e open source para consulta de dados empresariais brasileiros",
+  "viewOnGithub": "Ver no GitHub",
+  "mission": {
+    "title": "Nossa Missão",
+    "description1": "Democratizar o acesso às informações empresariais brasileiras, fornecendo uma plataforma gratuita, rápida e confiável para consulta de dados de CNPJ.",
+    "description2": "Acreditamos que informações públicas devem ser acessíveis a todos, sem barreiras financeiras ou técnicas. Por isso, mantemos o CNPJfy como um projeto 100% gratuito e open source."
+  },
   "features": {
-    "title": "Funcionalidades",
-    "openSource": "Código aberto",
-    "openSourceDesc": "Projeto totalmente open-source no GitHub",
-    "freeAccess": "Acesso gratuito",
-    "freeAccessDesc": "Consultas ilimitadas sem custo",
-    "realTimeData": "Dados atualizados",
-    "realTimeDataDesc": "Informações sempre atualizadas da Receita Federal",
-    "offlineSupport": "Suporte offline",
-    "offlineSupportDesc": "Funciona mesmo sem conexão com a internet"
+    "title": "Principais Recursos",
+    "updatedData": {
+      "title": "Dados Atualizados",
+      "description": "Informações sempre atualizadas diretamente da Receita Federal"
+    },
+    "fastQuery": {
+      "title": "Consulta Rápida",
+      "description": "Resultados instantâneos com interface otimizada"
+    },
+    "free": {
+      "title": "Totalmente Gratuito",
+      "description": "Sem limites, sem cadastro, sem custos ocultos"
+    },
+    "openSource": {
+      "title": "Open Source",
+      "description": "Código aberto e transparente para toda a comunidade"
+    }
   },
-  "technology": {
-    "title": "Tecnologia",
-    "description": "Desenvolvido com as mais modernas tecnologias web para garantir performance e acessibilidade.",
-    "frontend": "Frontend moderno com Next.js 14",
-    "backend": "Backend eficiente em C#",
-    "database": "Dados otimizados em Parquet",
-    "pwa": "Progressive Web App (PWA)"
+  "technologies": {
+    "title": "Tecnologias Utilizadas",
+    "nextjs": "Framework React moderno",
+    "typescript": "Tipagem estática",
+    "tailwind": "Estilização utilitária",
+    "shadcn": "Componentes acessíveis",
+    "reactQuery": "Gerenciamento de estado",
+    "indexeddb": "Cache offline"
   },
-  "contribute": {
-    "title": "Como contribuir",
-    "description": "O CNPJfy é um projeto comunitário. Sua contribuição é muito bem-vinda!",
-    "github": "Acesse nosso GitHub",
-    "issues": "Reporte problemas",
-    "pullRequests": "Envie melhorias",
-    "documentation": "Melhore a documentação"
+  "dataSource": {
+    "title": "Fonte dos Dados",
+    "description": "Todos os dados são obtidos diretamente dos arquivos públicos disponibilizados pela Receita Federal do Brasil, garantindo autenticidade e atualização constante das informações.",
+    "badges": {
+      "receita": "Receita Federal",
+      "public": "Dados Públicos",
+      "monthly": "Atualizações Mensais",
+      "official": "100% Oficial"
+    }
+  },
+  "contributors": {
+    "title": "Contribuidores",
+    "walisson": {
+      "role": "Criador do CNPJfy",
+      "description": "Desenvolvedor do frontend"
+    },
+    "hitmasu": {
+      "role": "Desenvolvedor da OpenCNPJ",
+      "description": "Desenvolvedor principal da API e datasets"
+    }
+  },
+  "statistics": {
+    "title": "Estatísticas do Projeto",
+    "companies": "Empresas no Banco",
+    "free": "Gratuito",
+    "availability": "Disponibilidade",
+    "source": "Source"
+  },
+  "support": {
+    "title": "Apoie o Projeto",
+    "description": "O CNPJfy é mantido por voluntários e depende da comunidade para continuar funcionando. Você pode ajudar de várias formas:",
+    "developers": {
+      "title": "Para Desenvolvedores",
+      "contribute": "Contribua com código no GitHub",
+      "report": "Reporte bugs e sugestões",
+      "docs": "Melhore a documentação",
+      "share": "Compartilhe o projeto"
+    },
+    "users": {
+      "title": "Para Usuários",
+      "star": "Dê uma estrela no GitHub",
+      "share": "Compartilhe com outros",
+      "report": "Reporte problemas",
+      "suggest": "Sugira melhorias"
+    },
+    "starButton": "Dar Estrela no GitHub",
+    "contactButton": "Entrar em Contato",
+    "emailCopied": "Copiado para área de transferência"
   },
   "license": {
-    "title": "Licença",
-    "description": "Este projeto está licenciado sob a licença MIT. Você pode usar, modificar e distribuir livremente."
-  },
-  "credits": {
-    "title": "Créditos",
-    "receita": "Dados fornecidos pela Receita Federal do Brasil",
-    "openstreetmap": "Mapas fornecidos pelo OpenStreetMap",
-    "community": "Desenvolvido pela comunidade open-source"
-  },
-  "contact": {
-    "title": "Contato",
-    "github": "GitHub",
-    "issues": "Problemas e sugestões"
+    "text": "Este projeto é licenciado sob a",
+    "mit": "Licença MIT",
+    "madeWith": "Feito com ❤️ para a comunidade brasileira"
   }
 }

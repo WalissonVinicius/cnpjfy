@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Copy, Check, BookOpen, Code, Globe, Zap, Shield, ExternalLink, Github } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { useTranslation } from '@/lib/i18n';
 
 interface ApiDocsPageProps {
   params: { locale: string };
@@ -15,20 +16,21 @@ interface ApiDocsPageProps {
 export default function ApiDocsPage({ params }: ApiDocsPageProps) {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const { toast } = useToast();
+  const { t } = useTranslation('apiDocs');
 
   const copyToClipboard = async (code: string, language: string) => {
     try {
       await navigator.clipboard.writeText(code);
       setCopiedCode(`${language}-${Date.now()}`);
       toast({
-        title: "Código copiado!",
-        description: `Exemplo em ${language} copiado para a área de transferência.`,
+        title: t('codeCopied', 'Código copiado!'),
+        description: t('codeCopiedDesc', `Exemplo em ${language} copiado para a área de transferência.`),
       });
       setTimeout(() => setCopiedCode(null), 2000);
     } catch (err) {
       toast({
-        title: "Erro ao copiar",
-        description: "Não foi possível copiar o código.",
+        title: t('copyError', 'Erro ao copiar'),
+        description: t('copyErrorDesc', 'Não foi possível copiar o código.'),
         variant: "destructive",
       });
     }
@@ -74,15 +76,14 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
           <div className="text-center space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-accent-500/10 border border-brand-500/20 mb-4">
               <BookOpen className="h-4 w-4 mr-2 text-brand-600 dark:text-brand-400" />
-              <span className="text-sm font-medium text-brand-600 dark:text-brand-400">Documentação Técnica</span>
+              <span className="text-sm font-medium text-brand-600 dark:text-brand-400">{t('technicalDocs', 'Documentação Técnica')}</span>
             </div>
 
             <h1 className="text-4xl font-bold bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-              API OpenCNPJ
+              {t('title', 'API OpenCNPJ')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Documentação completa da API pública para consulta de dados empresariais brasileiros.
-              Gratuita, rápida e sem necessidade de autenticação.
+              {t('subtitle', 'Documentação completa da API pública para consulta de dados empresariais brasileiros. Gratuita, rápida e sem necessidade de autenticação.')}
             </p>
           </div>
 
@@ -92,13 +93,13 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
             <CardHeader className="relative z-10">
               <CardTitle className="text-2xl font-semibold flex items-center gap-2">
                 <Zap className="h-6 w-6 text-brand-500" />
-                Quick Start
+                {t('quickStart', 'Quick Start')}
               </CardTitle>
             </CardHeader>
             <CardContent className="relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-medium mb-2">URL Base</h3>
+                  <h3 className="text-lg font-medium mb-2">{t('baseUrl', 'URL Base')}</h3>
                   <div className="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 p-3 rounded-lg border">
                     <code className="text-sm font-mono text-brand-600 dark:text-brand-400">
                       https://opencnpj.com/api
@@ -106,16 +107,16 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Autenticação</h3>
+                  <h3 className="text-lg font-medium mb-2">{t('authentication', 'Autenticação')}</h3>
                   <div className="space-y-2">
                     <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                      ✅ Não requer autenticação
+                      ✅ {t('noAuth', 'Não requer autenticação')}
                     </Badge>
                     <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                      ✅ Completamente gratuita
+                      ✅ {t('completelyFree', 'Completamente gratuita')}
                     </Badge>
                     <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                      ⚡ Rate limit: 50 req/s
+                      ⚡ {t('rateLimit', 'Rate limit: 50 req/s')}
                     </Badge>
                   </div>
                 </div>
@@ -126,7 +127,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
           {/* Endpoints */}
           <section className="space-y-8">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-              📡 Endpoints Disponíveis
+              📡 {t('availableEndpoints', 'Endpoints Disponíveis')}
             </h2>
 
             {/* Endpoint 1: Consultar Empresa */}
@@ -142,30 +143,30 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   </code>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3">Consultar Empresa por CNPJ</h3>
+                <h3 className="text-xl font-semibold mb-3">{t('queryCompanyByCnpj', 'Consultar Empresa por CNPJ')}</h3>
                 <p className="text-muted-foreground mb-6">
-                  Retorna informações completas de uma empresa brasileira através do seu CNPJ.
+                  {t('queryCompanyDesc', 'Retorna informações completas de uma empresa brasileira através do seu CNPJ.')}
                 </p>
 
                 {/* Parâmetros */}
                 <div className="mb-6">
-                  <h4 className="text-lg font-medium mb-3">Parâmetros</h4>
+                  <h4 className="text-lg font-medium mb-3">{t('parameters', 'Parâmetros')}</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 rounded-lg">
                       <thead>
                         <tr className="bg-gray-50 dark:bg-gray-800">
-                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">Parâmetro</th>
-                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">Tipo</th>
-                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">Obrigatório</th>
-                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">Descrição</th>
+                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">{t('parameter', 'Parâmetro')}</th>
+                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">{t('type', 'Tipo')}</th>
+                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">{t('required', 'Obrigatório')}</th>
+                          <th className="border border-gray-200 dark:border-gray-700 p-3 text-left">{t('description', 'Descrição')}</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td className="border border-gray-200 dark:border-gray-700 p-3 font-mono">cnpj</td>
                           <td className="border border-gray-200 dark:border-gray-700 p-3">string</td>
-                          <td className="border border-gray-200 dark:border-gray-700 p-3">✅ Sim</td>
-                          <td className="border border-gray-200 dark:border-gray-700 p-3">CNPJ da empresa (com ou sem formatação). Deve conter 14 dígitos.</td>
+                          <td className="border border-gray-200 dark:border-gray-700 p-3">✅ {t('yes', 'Sim')}</td>
+                          <td className="border border-gray-200 dark:border-gray-700 p-3">{t('cnpjParamDesc', 'CNPJ da empresa (com ou sem formatação). Deve conter 14 dígitos.')}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -175,7 +176,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                 {/* Exemplo de Requisição */}
                 <div className="mb-6">
                   <CodeBlock
-                    title="Exemplo de Requisição"
+                    title={t('exampleRequest', 'Exemplo de Requisição')}
                     language="curl"
                     code={`curl -X GET "https://opencnpj.com/api/11222333000181" \\
   -H "Accept: application/json"`}
@@ -185,7 +186,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                 {/* Exemplo de Resposta */}
                 <div className="mb-6">
                   <CodeBlock
-                    title="Exemplo de Resposta (200 OK)"
+                    title={t('exampleResponse', 'Exemplo de Resposta (200 OK)')}
                     language="json"
                     code={`{
   "cnpj": "11.222.333/0001-81",
@@ -280,7 +281,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
           {/* Códigos de Status HTTP */}
           <section className="space-y-6">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-              📊 Códigos de Status HTTP
+              📊 {t('httpStatusCodes', 'Códigos de Status HTTP')}
             </h2>
 
             <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm shadow-xl">
@@ -290,42 +291,42 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   <table className="w-full border-collapse border border-gray-200 dark:border-gray-700 rounded-lg">
                     <thead>
                       <tr className="bg-gray-50 dark:bg-gray-800">
-                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">Código</th>
-                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">Status</th>
-                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">Descrição</th>
-                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">Possíveis Causas</th>
+                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">{t('statusCode', 'Código')}</th>
+                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">{t('status', 'Status')}</th>
+                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">{t('description', 'Descrição')}</th>
+                        <th className="border border-gray-200 dark:border-gray-700 p-4 text-left">{t('possibleCauses', 'Possíveis Causas')}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-green-600">200</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-medium">OK</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Requisição processada com sucesso</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">CNPJ válido e encontrado na base</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-green-600 dark:text-green-400">200</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-green-600 dark:text-green-400 font-medium">{t('success', 'Sucesso')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4">{t('successDesc', 'Empresa encontrada e dados retornados')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-sm text-muted-foreground">{t('validRequest', 'Requisição válida com CNPJ existente')}</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-yellow-600">400</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-medium">Bad Request</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Parâmetros inválidos na requisição</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">CNPJ com formato inválido ou ausente</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-yellow-600 dark:text-yellow-400">400</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-yellow-600 dark:text-yellow-400 font-medium">{t('badRequest', 'Requisição Inválida')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4">{t('badRequestDesc', 'Parâmetros inválidos ou malformados')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-sm text-muted-foreground">{t('invalidCnpj', 'CNPJ com formato inválido ou ausente')}</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-red-600">404</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-medium">Not Found</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">CNPJ não encontrado na base</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">CNPJ inexistente ou não cadastrado na Receita Federal</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-red-600 dark:text-red-400">404</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-red-600 dark:text-red-400 font-medium">{t('notFound', 'Não Encontrado')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4">{t('notFoundDesc', 'CNPJ não encontrado na base de dados')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-sm text-muted-foreground">{t('cnpjNotExists', 'CNPJ não existe ou não está ativo')}</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-orange-600">429</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-medium">Too Many Requests</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Limite de requisições excedido</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Mais de 50 requisições por segundo do mesmo IP</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-orange-600 dark:text-orange-400">429</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-orange-600 dark:text-orange-400 font-medium">{t('tooManyRequests', 'Muitas Requisições')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4">{t('tooManyRequestsDesc', 'Rate limit excedido')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-sm text-muted-foreground">{t('rateLimitExceeded', 'Mais de 50 requisições por segundo')}</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-red-600">500</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-medium">Internal Server Error</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Erro interno do servidor</td>
-                        <td className="border border-gray-200 dark:border-gray-700 p-4">Problema temporário na infraestrutura</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-red-600 dark:text-red-400">500</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-red-600 dark:text-red-400 font-medium">{t('internalError', 'Erro Interno do Servidor')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4">{t('internalErrorDesc', 'Erro interno temporário')}</td>
+                        <td className="border border-gray-200 dark:border-gray-700 p-4 text-sm text-muted-foreground">{t('serverIssue', 'Problema temporário no servidor')}</td>
                       </tr>
                       <tr>
                         <td className="border border-gray-200 dark:border-gray-700 p-4 font-mono text-red-600">503</td>
@@ -343,7 +344,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
           {/* Exemplos de Implementação */}
           <section className="space-y-8">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-              💻 Exemplos de Implementação
+              💻 {t('implementationExamples', 'Exemplos de Implementação')}
             </h2>
 
             {/* JavaScript */}
@@ -357,7 +358,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
               </CardHeader>
               <CardContent className="relative z-10 space-y-6">
                 <CodeBlock
-                  title="Usando fetch (nativo)"
+                  title={t('fetchNative', 'Usando fetch (nativo)')}
                   language="javascript"
                   code={`async function consultarCNPJ(cnpj) {
   try {
@@ -374,31 +375,31 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
     }
 
     const empresa = await response.json();
-    console.log('Empresa encontrada:', empresa);
+    console.log('${t('companyFound', 'Empresa encontrada:')}', empresa);
     return empresa;
   } catch (error) {
-    console.error('Erro ao consultar CNPJ:', error);
+    console.error('${t('cnpjQueryError', 'Erro ao consultar CNPJ:')}', error);
     throw error;
   }
 }
 
-// Uso
+// ${t('usage', 'Uso')}
 consultarCNPJ('11222333000181')
   .then(empresa => {
-    console.log(\`Razão Social: \${empresa.razao_social}\`);
-    console.log(\`CNAE: \${empresa.cnae_fiscal_descricao}\`);
+    console.log(\`${t('corporateName', 'Razão Social: ')}\${empresa.razao_social}\`);
+    console.log(\`${t('cnae', 'CNAE: ')}\${empresa.cnae_fiscal_descricao}\`);
   })
   .catch(error => {
-    console.error('Falha na consulta:', error);
+    console.error('${t('queryFailure', 'Falha na consulta:')}', error);
   });`}
                 />
 
                 <CodeBlock
-                  title="Usando axios"
+                  title={t('usingAxios', 'Usando axios')}
                   language="javascript"
                   code={`const axios = require('axios');
 
-// Configuração do cliente
+// ${t('clientConfig', 'Configuração do cliente')}
 const apiClient = axios.create({
   baseURL: 'https://opencnpj.com/api',
   timeout: 30000,
@@ -408,7 +409,7 @@ const apiClient = axios.create({
   }
 });
 
-// Interceptor para retry automático
+// ${t('autoRetryInterceptor', 'Interceptor para retry automático')}
 apiClient.interceptors.response.use(
   response => response,
   async error => {
@@ -426,19 +427,19 @@ async function consultarCNPJ(cnpj) {
     return response.data;
   } catch (error) {
     if (error.response?.status === 404) {
-      throw new Error('CNPJ não encontrado');
+      throw new Error('${t('cnpjNotFound', 'CNPJ não encontrado')}');
     } else if (error.response?.status === 400) {
-      throw new Error('CNPJ inválido');
+      throw new Error('${t('invalidCnpj', 'CNPJ inválido')}');
     } else {
-      throw new Error('Erro na consulta: ' + error.message);
+      throw new Error('${t('queryError', 'Erro na consulta: ')}' + error.message);
     }
   }
 }
 
-// Uso
+// ${t('usage', 'Uso')}
 consultarCNPJ('11222333000181')
   .then(empresa => {
-    console.log(\`Empresa: \${empresa.razao_social}\`);
+    console.log(\`${t('company', 'Empresa: ')}\${empresa.razao_social}\`);
   })
   .catch(error => {
     console.error(error.message);
@@ -458,7 +459,7 @@ consultarCNPJ('11222333000181')
               </CardHeader>
               <CardContent className="relative z-10">
                 <CodeBlock
-                  title="Implementação completa com requests"
+                  title={t('completeImplementationRequests', 'Implementação completa com requests')}
                   language="python"
                   code={`import requests
 import time
@@ -476,23 +477,23 @@ class OpenCNPJClient:
 
     def consultar_cnpj(self, cnpj: str) -> Optional[Dict[str, Any]]:
         """
-        Consulta informações de uma empresa pelo CNPJ
+        ${t('queryCompanyInfoByCnpj', 'Consulta informações de uma empresa pelo CNPJ')}
         
         Args:
-            cnpj (str): CNPJ da empresa (com ou sem formatação)
+            cnpj (str): ${t('companyCnpjWithOrWithoutFormat', 'CNPJ da empresa (com ou sem formatação)')}
             
         Returns:
-            Dict com informações da empresa ou None se não encontrada
+            ${t('dictWithCompanyInfoOrNone', 'Dict com informações da empresa ou None se não encontrada')}
             
         Raises:
-            ValueError: Se o CNPJ for inválido
-            requests.RequestException: Se houver erro na requisição
+            ValueError: ${t('ifCnpjInvalid', 'Se o CNPJ for inválido')}
+            requests.RequestException: ${t('ifRequestError', 'Se houver erro na requisição')}
         """
-        # Remove formatação do CNPJ
+        # ${t('removeCnpjFormatting', 'Remove formatação do CNPJ')}
         cnpj_limpo = ''.join(filter(str.isdigit, cnpj))
         
         if not self.validar_cnpj(cnpj_limpo):
-            raise ValueError("CNPJ inválido")
+            raise ValueError("${t('invalidCnpj', 'CNPJ inválido')}")
         
         url = f"{self.base_url}/{cnpj_limpo}"
         
@@ -504,7 +505,7 @@ class OpenCNPJClient:
             elif response.status_code == 404:
                 return None
             elif response.status_code == 429:
-                # Rate limit - aguarda e tenta novamente
+                # ${t('rateLimitWaitRetry', 'Rate limit - aguarda e tenta novamente')}
                 time.sleep(2)
                 response = self.session.get(url)
                 if response.status_code == 200:
@@ -515,42 +516,42 @@ class OpenCNPJClient:
                 response.raise_for_status()
                 
         except requests.RequestException as e:
-            raise requests.RequestException(f"Erro na consulta: {e}")
+            raise requests.RequestException(f"${t('queryError', 'Erro na consulta: ')}{e}")
 
     def obter_info(self) -> Dict[str, Any]:
-        """Obtém informações sobre a base de dados"""
+        """${t('getDatabaseInfo', 'Obtém informações sobre a base de dados')}"""
         url = f"{self.base_url}/info"
         response = self.session.get(url)
         response.raise_for_status()
         return response.json()
 
     def validar_cnpj(self, cnpj: str) -> bool:
-        """Valida se o CNPJ possui formato correto"""
+        """${t('validateCnpjFormat', 'Valida se o CNPJ possui formato correto')}"""
         return len(cnpj) == 14 and cnpj.isdigit()
 
-# Exemplo de uso
+# ${t('usageExample', 'Exemplo de uso')}
 if __name__ == "__main__":
     client = OpenCNPJClient()
     
     try:
-        # Consultar empresa
+        # ${t('queryCompany', 'Consultar empresa')}
         empresa = client.consultar_cnpj("11.222.333/0001-81")
         
         if empresa:
-            print(f"Razão Social: {empresa['razao_social']}")
-            print(f"CNAE: {empresa['cnae_fiscal_descricao']}")
-            print(f"Situação: {empresa['descricao_situacao_cadastral']}")
+            print(f"${t('corporateName', 'Razão Social: ')}{empresa['razao_social']}")
+            print(f"${t('cnae', 'CNAE: ')}{empresa['cnae_fiscal_descricao']}")
+            print(f"${t('situation', 'Situação: ')}{empresa['descricao_situacao_cadastral']}")
         else:
-            print("Empresa não encontrada")
+            print("${t('companyNotFound', 'Empresa não encontrada')}")
             
-        # Obter informações da base
+        # ${t('getDatabaseInfo', 'Obter informações da base')}
         info = client.obter_info()
-        print(f"Última atualização: {info['ultima_atualizacao']}")
+        print(f"${t('lastUpdate', 'Última atualização: ')}{info['ultima_atualizacao']}")
         
     except ValueError as e:
-        print(f"Erro de validação: {e}")
+        print(f"${t('validationError', 'Erro de validação: ')}{e}")
     except requests.RequestException as e:
-        print(f"Erro na requisição: {e}")`}
+        print(f"${t('requestError', 'Erro na requisição: ')}{e}")`}
                 />
               </CardContent>
             </Card>
@@ -566,7 +567,7 @@ if __name__ == "__main__":
               </CardHeader>
               <CardContent className="relative z-10">
                 <CodeBlock
-                  title="Implementação com HttpClient (Java 11+)"
+                  title={t('httpClientImplementation', 'Implementação com HttpClient (Java 11+)')}
                   language="java"
                   code={`import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -591,11 +592,11 @@ public class OpenCNPJClient {
     }
 
     public JsonNode consultarCNPJ(String cnpj) throws Exception {
-        // Remove formatação do CNPJ
+        // ${t('removeCnpjFormatting', 'Remove formatação do CNPJ')}
         String cnpjLimpo = cnpj.replaceAll("[^0-9]", "");
         
         if (!validarCNPJ(cnpjLimpo)) {
-            throw new IllegalArgumentException("CNPJ inválido");
+            throw new IllegalArgumentException("${t('invalidCnpj', 'CNPJ inválido')}");
         }
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -616,19 +617,19 @@ public class OpenCNPJClient {
                 case 404:
                     return null;
                 case 429:
-                    // Rate limit - aguarda e tenta novamente
+                    // ${t('rateLimitWaitRetry', 'Rate limit - aguarda e tenta novamente')}
                     Thread.sleep(2000);
                     HttpResponse<String> retryResponse = httpClient.send(request,
                         HttpResponse.BodyHandlers.ofString());
                     if (retryResponse.statusCode() == 200) {
                         return objectMapper.readTree(retryResponse.body());
                     }
-                    throw new RuntimeException("Rate limit excedido");
+                    throw new RuntimeException("${t('rateLimitExceeded', 'Rate limit excedido')}");
                 default:
-                    throw new RuntimeException("Erro HTTP: " + response.statusCode());
+                    throw new RuntimeException("${t('httpError', 'Erro HTTP: ')}" + response.statusCode());
             }
         } catch (Exception e) {
-            throw new Exception("Erro na consulta: " + e.getMessage(), e);
+            throw new Exception("${t('queryError', 'Erro na consulta: ')}" + e.getMessage(), e);
         }
     }
 
@@ -656,7 +657,7 @@ public class OpenCNPJClient {
         if (response.statusCode() == 200) {
             return objectMapper.readTree(response.body());
         } else {
-            throw new RuntimeException("Erro HTTP: " + response.statusCode());
+            throw new RuntimeException("${t('httpError', 'Erro HTTP: ')}" + response.statusCode());
         }
     }
 
@@ -664,42 +665,42 @@ public class OpenCNPJClient {
         return cnpj != null && cnpj.length() == 14 && cnpj.matches("\\\\d+");
     }
 
-    // Exemplo de uso
+    // ${t('usageExample', 'Exemplo de uso')}
     public static void main(String[] args) {
         OpenCNPJClient client = new OpenCNPJClient();
 
         try {
-            // Consulta síncrona
+            // ${t('synchronousQuery', 'Consulta síncrona')}
             JsonNode empresa = client.consultarCNPJ("11.222.333/0001-81");
             
             if (empresa != null) {
-                System.out.println("Razão Social: " + 
+                System.out.println("${t('corporateName', 'Razão Social: ')}" + 
                     empresa.get("razao_social").asText());
-                System.out.println("CNAE: " + 
+                System.out.println("${t('cnae', 'CNAE: ')}" + 
                     empresa.get("cnae_fiscal_descricao").asText());
                 
-                // Processar sócios (QSA)
+                // ${t('processPartners', 'Processar sócios (QSA)')}
                 if (empresa.has("QSA") && empresa.get("QSA").isArray()) {
-                    System.out.println("Sócios:");
+                    System.out.println("${t('partners', 'Sócios:')}");
                     empresa.get("QSA").forEach(socio -> {
                         System.out.println("- " + socio.get("nome").asText());
                     });
                 }
             } else {
-                System.out.println("Empresa não encontrada");
+                System.out.println("${t('companyNotFound', 'Empresa não encontrada')}");
             }
 
-            // Consulta assíncrona
+            // ${t('asynchronousQuery', 'Consulta assíncrona')}
             client.consultarCNPJAsync("11222333000181")
                 .thenAccept(result -> {
                     if (result != null) {
-                        System.out.println("Consulta assíncrona concluída");
+                        System.out.println("${t('asyncQueryCompleted', 'Consulta assíncrona concluída')}");
                     }
                 })
                 .join();
 
         } catch (Exception e) {
-            System.err.println("Erro: " + e.getMessage());
+            System.err.println("${t('error', 'Erro: ')}" + e.getMessage());
         }
     }
 }`}
@@ -711,7 +712,7 @@ public class OpenCNPJClient {
           {/* Guia de Integração */}
           <section className="space-y-6">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-              🔧 Guia de Integração
+              🔧 {t('integrationGuide', 'Guia de Integração')}
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -720,34 +721,34 @@ public class OpenCNPJClient {
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <CardHeader className="relative z-10">
                   <CardTitle className="text-xl font-semibold text-green-600 dark:text-green-400">
-                    ✅ Boas Práticas
+                    ✅ {t('bestPractices', 'Boas Práticas')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Implemente cache local para evitar requisições desnecessárias</span>
+                      <span>{t('bestPractice1', 'Implemente cache local para evitar requisições desnecessárias')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Valide o CNPJ antes de fazer a requisição</span>
+                      <span>{t('bestPractice2', 'Valide o CNPJ antes de fazer a requisição')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Trate todos os códigos de erro adequadamente</span>
+                      <span>{t('bestPractice3', 'Trate todos os códigos de erro adequadamente')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Use timeouts apropriados (30s recomendado)</span>
+                      <span>{t('bestPractice4', 'Use timeouts apropriados (30s recomendado)')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Implemente retry com backoff exponencial</span>
+                      <span>{t('bestPractice5', 'Implemente retry com backoff exponencial')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-green-500 mt-1">•</span>
-                      <span>Monitore o rate limit através dos headers</span>
+                      <span>{t('bestPractice6', 'Monitore o rate limit através dos headers')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -758,34 +759,34 @@ public class OpenCNPJClient {
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <CardHeader className="relative z-10">
                   <CardTitle className="text-xl font-semibold text-red-600 dark:text-red-400">
-                    ❌ Evite Fazer
+                    ❌ {t('avoidDoing', 'Evite Fazer')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="relative z-10">
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não faça mais de 50 requisições por segundo</span>
+                      <span>{t('avoidPractice1', 'Não faça mais de 50 requisições por segundo')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não ignore os códigos de erro HTTP</span>
+                      <span>{t('avoidPractice2', 'Não ignore os códigos de erro HTTP')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não faça requisições paralelas excessivas</span>
+                      <span>{t('avoidPractice3', 'Não faça requisições paralelas excessivas')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não armazene dados por mais de 30 dias</span>
+                      <span>{t('avoidPractice4', 'Não armazene dados por mais de 30 dias')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não use a API para scraping em massa</span>
+                      <span>{t('avoidPractice5', 'Não use a API para scraping em massa')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 mt-1">•</span>
-                      <span>Não redistribua os dados sem autorização</span>
+                      <span>{t('avoidPractice6', 'Não redistribua os dados sem autorização')}</span>
                     </li>
                   </ul>
                 </CardContent>
@@ -796,7 +797,7 @@ public class OpenCNPJClient {
           {/* Limitações e Termos */}
           <section className="space-y-6">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-              ⚖️ Limitações e Termos de Uso
+              ⚖️ {t('limitationsAndTerms', 'Limitações e Termos de Uso')}
             </h2>
 
             <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm shadow-xl">
@@ -804,24 +805,24 @@ public class OpenCNPJClient {
               <CardContent className="p-6 relative z-10">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Limitações Técnicas</h3>
+                    <h3 className="text-lg font-semibold mb-3">{t('technicalLimitations', 'Limitações Técnicas')}</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• <strong>Rate Limit:</strong> 50 requisições/segundo por IP</li>
-                      <li>• <strong>Timeout:</strong> 30 segundos por requisição</li>
-                      <li>• <strong>Dados:</strong> Atualizados mensalmente</li>
-                      <li>• <strong>Disponibilidade:</strong> 99.5% SLA (não garantido)</li>
-                      <li>• <strong>Cache:</strong> Recomendado cache local de 24h</li>
+                      <li>• <strong>{t('rateLimit', 'Rate Limit')}:</strong> {t('rateLimitDesc', '50 requisições/segundo por IP')}</li>
+                      <li>• <strong>{t('timeout', 'Timeout')}:</strong> {t('timeoutDesc', '30 segundos por requisição')}</li>
+                      <li>• <strong>{t('data', 'Dados')}:</strong> {t('dataDesc', 'Atualizados mensalmente')}</li>
+                      <li>• <strong>{t('availability', 'Disponibilidade')}:</strong> {t('availabilityDesc', '99.5% SLA (não garantido)')}</li>
+                      <li>• <strong>{t('cache', 'Cache')}:</strong> {t('cacheDesc', 'Recomendado cache local de 24h')}</li>
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold mb-3">Termos de Uso</h3>
+                    <h3 className="text-lg font-semibold mb-3">{t('termsOfUse', 'Termos de Uso')}</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>• Uso gratuito para fins legítimos</li>
-                      <li>• Proibido uso para spam ou atividades ilegais</li>
-                      <li>• Dados são públicos da Receita Federal</li>
-                      <li>• Sem garantias de disponibilidade</li>
-                      <li>• Respeite os limites de rate limiting</li>
+                      <li>• {t('term1', 'Uso gratuito para fins legítimos')}</li>
+                      <li>• {t('term2', 'Proibido uso para spam ou atividades ilegais')}</li>
+                      <li>• {t('term3', 'Dados são públicos da Receita Federal')}</li>
+                      <li>• {t('term4', 'Sem garantias de disponibilidade')}</li>
+                      <li>• {t('term5', 'Respeite os limites de rate limiting')}</li>
                     </ul>
                   </div>
                 </div>
@@ -831,30 +832,28 @@ public class OpenCNPJClient {
 
           {/* Suporte */}
           <section className="bg-gradient-to-r from-brand-100 to-accent-100 dark:from-brand-900/40 dark:to-accent-900/40 border border-brand-200/50 dark:border-brand-700/50 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4 text-brand-900 dark:text-brand-100">🤝 Suporte e Comunidade</h2>
+            <h2 className="text-2xl font-bold mb-4 text-brand-900 dark:text-brand-100">🤝 {t('supportCommunity', 'Suporte e Comunidade')}</h2>
             <p className="text-brand-700 dark:text-brand-300 mb-6 max-w-2xl mx-auto">
-              Precisa de ajuda? Encontrou um bug? Quer contribuir? Nossa comunidade está aqui para ajudar!
+              {t('supportMessage', 'Precisa de ajuda? Nossa comunidade está aqui para apoiar!')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                variant="outline"
-                asChild
-                className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-brand-300 dark:border-brand-700 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-brand-700 dark:text-brand-300 hover:text-brand-900 dark:hover:text-brand-100"
-              >
-                <a href="https://github.com/Hitmasu/OpenCNPJ" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  GitHub
+              <Button variant="outline" className="bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800">
+                <a href="https://github.com/Hitmasu/OpenCNPJ/issues" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  {t('githubIssues', 'Reportar Bug')}
                 </a>
               </Button>
-              <Button
-                variant="outline"
-                asChild
-                className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-red-700 dark:text-red-300 hover:text-red-900 dark:hover:text-red-100"
-              >
-                <a href="https://github.com/Hitmasu/OpenCNPJ/issues" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Reportar Bug
+              <Button variant="outline" className="bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800">
+                <a href="https://github.com/Hitmasu/OpenCNPJ" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <Github className="h-4 w-4 mr-2" />
+                  {t('documentation', 'Documentação')}
+                </a>
+              </Button>
+              <Button variant="outline" className="bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800">
+                <a href="https://discord.gg/opencnpj" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  {t('community', 'Comunidade')}
                 </a>
               </Button>
             </div>

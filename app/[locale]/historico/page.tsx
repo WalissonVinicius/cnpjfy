@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -17,6 +17,7 @@ import {
 import { formatDate, formatCNPJ } from '@/lib/utils'
 import { getSearchHistory, clearSearchHistory } from '@/lib/storage'
 import { useToast } from '@/components/ui/use-toast'
+import { useTranslation } from '@/lib/i18n'
 import Link from 'next/link'
 
 interface HistoryPageProps {
@@ -36,6 +37,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
   const [searchFilter, setSearchFilter] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const { toast } = useToast()
+  const { t } = useTranslation('history')
 
   useEffect(() => {
     loadHistory()
@@ -75,13 +77,13 @@ export default function HistoryPage({ params }: HistoryPageProps) {
       setSearchHistory([])
       setFilteredHistory([])
       toast({
-        title: 'Histórico limpo',
-        description: 'Todo o histórico de pesquisas foi removido.',
+        title: t('historyCleared', 'Histórico limpo'),
+        description: t('historyClearedDesc', 'Todo o histórico de pesquisas foi removido.'),
       })
     } catch (error) {
       toast({
-        title: 'Erro',
-        description: 'Não foi possível limpar o histórico.',
+        title: t('error', 'Erro'),
+        description: t('clearHistoryError', 'Não foi possível limpar o histórico.'),
         variant: 'destructive',
       })
     }
@@ -137,10 +139,10 @@ export default function HistoryPage({ params }: HistoryPageProps) {
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-            Histórico de Pesquisas
+            {t('title', 'Histórico de Pesquisas')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Visualize e gerencie suas consultas anteriores com dados organizados e estatísticas detalhadas
+            {t('description', 'Visualize e gerencie suas consultas anteriores com dados organizados e estatísticas detalhadas')}
           </p>
           
           {searchHistory.length > 0 && (
@@ -150,7 +152,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                 className="h-12 px-6 bg-red-50 dark:bg-red-950/50 border-2 border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950/70 hover:border-red-300 dark:hover:border-red-700 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
-                Limpar Histórico
+                {t('clearHistory', 'Limpar Histórico')}
               </Button>
             </div>
           )}
@@ -166,7 +168,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-brand-500" />
                     <Input
-                      placeholder="Filtrar por empresa ou CNPJ..."
+                      placeholder={t('filterPlaceholder', 'Filtrar por empresa ou CNPJ...')}
                       value={searchFilter}
                       onChange={(e) => setSearchFilter(e.target.value)}
                       className="pl-12 h-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 rounded-lg transition-all duration-300"
@@ -177,7 +179,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                   className="h-12 px-6 bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-lg hover:shadow-xl hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
                 >
                   <Filter className="h-4 w-4 mr-2 text-white" />
-                  Filtros
+                  {t('filters', 'Filtros')}
                 </Button>
               </div>
             </CardContent>
@@ -192,12 +194,12 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                 <Clock className="h-10 w-10 text-brand-500" />
               </div>
               <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-                {searchHistory.length === 0 ? 'Nenhuma pesquisa realizada' : 'Nenhum resultado encontrado'}
+                {searchHistory.length === 0 ? t('noSearches', 'Nenhuma pesquisa realizada') : t('noResults', 'Nenhum resultado encontrado')}
               </h3>
               <p className="text-lg text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchHistory.length === 0
-                  ? 'Suas consultas de CNPJ aparecerão aqui automaticamente.'
-                  : 'Tente ajustar os filtros de pesquisa.'
+                  ? t('noSearchesDesc', 'Suas consultas de CNPJ aparecerão aqui automaticamente.')
+                  : t('noResultsDesc', 'Tente ajustar os filtros de pesquisa.')
                 }
               </p>
               {searchHistory.length === 0 && (
@@ -207,7 +209,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                 >
                   <Link href={`/${params.locale}`}>
                     <Search className="h-5 w-5 mr-2" />
-                    Fazer primeira consulta
+                    {t('firstSearch', 'Fazer primeira consulta')}
                   </Link>
                 </Button>
               )}
@@ -242,8 +244,8 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <Badge className={`${getStatusColor(item.status || 'Não informado')} px-3 py-1 font-semibold`}>
-                        {item.status || 'Não informado'}
+                      <Badge className={`${getStatusColor(item.status || t('notInformed', 'Não informado'))} px-3 py-1 font-semibold`}>
+                        {item.status || t('notInformed', 'Não informado')}
                       </Badge>
 
                       <Button 
@@ -252,7 +254,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                         className="h-10 px-4 bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-md hover:shadow-lg hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
                       >
                         <Link href={`/${params.locale}/empresa/${item.cnpj}`}>
-                          Ver Detalhes
+                          {t('viewDetails', 'Ver Detalhes')}
                         </Link>
                       </Button>
                     </div>
@@ -268,7 +270,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
           <Card className="bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm border-0 shadow-lg">
             <CardHeader className="text-center pb-6">
               <CardTitle className="text-3xl font-bold bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-                Estatísticas
+                {t('statistics', 'Estatísticas')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -278,7 +280,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     {searchHistory.length}
                   </div>
                   <div className="text-sm font-medium text-white/80">
-                    Total de Consultas
+                    {t('totalSearches', 'Total de Consultas')}
                   </div>
                 </div>
 
@@ -287,7 +289,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     {searchHistory.filter(item => item.status?.toLowerCase() === 'ativa').length}
                   </div>
                   <div className="text-sm font-medium text-white/80">
-                    Empresas Ativas
+                    {t('activeCompanies', 'Empresas Ativas')}
                   </div>
                 </div>
 
@@ -296,7 +298,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     {searchHistory.filter(item => item.status?.toLowerCase() === 'suspensa').length}
                   </div>
                   <div className="text-sm font-medium text-white/80">
-                    Suspensas
+                    {t('suspended', 'Suspensas')}
                   </div>
                 </div>
 
@@ -305,7 +307,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     {searchHistory.filter(item => item.status?.toLowerCase() === 'baixada').length}
                   </div>
                   <div className="text-sm font-medium text-white/80">
-                    Baixadas
+                    {t('closed', 'Baixadas')}
                   </div>
                 </div>
               </div>

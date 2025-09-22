@@ -24,5 +24,11 @@
   "systemMode": "Sistema",
   "language": "Idioma",
   "portuguese": "Português",
-  "english": "English"
+  "english": "English",
+  "compareCompanies": "Comparar empresas",
+  "aboutProject": "Sobre o projeto",
+  "footer": {
+    "developedBy": "Desenvolvido pela comunidade",
+    "dataSource": "Dados da Receita Federal do Brasil"
+  }
 }

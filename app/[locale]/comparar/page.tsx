@@ -20,6 +20,7 @@ import {
 import { cnpjMask, cnpjClean, isValidCnpj } from '@/lib/cnpj'
 import { formatCurrency, formatDate, formatCNPJ } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
+import { useTranslation } from '@/lib/i18n'
 import { Company } from '@/lib/api'
 import {
   getComparisonCompanies,
@@ -33,6 +34,7 @@ interface ComparePageProps {
 }
 
 export default function ComparePage({ params }: ComparePageProps) {
+  const { t } = useTranslation('compare')
   const [companies, setCompanies] = useState<Company[]>([])
   const [cnpjInput, setCnpjInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -71,8 +73,8 @@ export default function ComparePage({ params }: ComparePageProps) {
 
     if (!isValidCnpj(cleanCnpj)) {
       toast({
-        title: 'CNPJ inválido',
-        description: 'Por favor, digite um CNPJ válido.',
+        title: t('invalidCnpj', 'CNPJ inválido'),
+        description: t('invalidCnpjDesc', 'Por favor, digite um CNPJ válido.'),
         variant: 'destructive',
       })
       return
@@ -80,8 +82,8 @@ export default function ComparePage({ params }: ComparePageProps) {
 
     if (companies.some(company => company.cnpj === cleanCnpj)) {
       toast({
-        title: 'Empresa já adicionada',
-        description: 'Esta empresa já está na comparação.',
+        title: t('companyAlreadyAdded', 'Empresa já adicionada'),
+        description: t('companyAlreadyAddedDesc', 'Esta empresa já está na comparação.'),
         variant: 'destructive',
       })
       return
@@ -89,8 +91,8 @@ export default function ComparePage({ params }: ComparePageProps) {
 
     if (companies.length >= 4) {
       toast({
-        title: 'Limite atingido',
-        description: 'Você pode comparar no máximo 4 empresas.',
+        title: t('limitReached', 'Limite atingido'),
+        description: t('limitReachedDesc', 'Você pode comparar no máximo 4 empresas.'),
         variant: 'destructive',
       })
       return
@@ -126,13 +128,13 @@ export default function ComparePage({ params }: ComparePageProps) {
       })
 
       toast({
-        title: 'Empresa adicionada',
-        description: `${company.razaoSocial} foi adicionada à comparação.`,
+        title: t('companyAdded', 'Empresa adicionada'),
+        description: t('companyAddedDesc', `${company.razaoSocial} foi adicionada à comparação.`),
       })
     } catch (error) {
       toast({
-        title: 'Erro ao buscar empresa',
-        description: 'Não foi possível encontrar a empresa com este CNPJ.',
+        title: t('errorFetchingCompany', 'Erro ao buscar empresa'),
+        description: t('errorFetchingCompanyDesc', 'Não foi possível encontrar a empresa com este CNPJ.'),
         variant: 'destructive',
       })
     } finally {
@@ -169,10 +171,10 @@ export default function ComparePage({ params }: ComparePageProps) {
         {/* Header */}
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-            Comparar Empresas
+            {t('title', 'Comparar Empresas')}
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Compare informações de até 4 empresas lado a lado com dados detalhados e análises visuais
+            {t('subtitle', 'Compare informações de até 4 empresas lado a lado com dados detalhados e análises visuais')}
           </p>
         </div>
 
@@ -183,7 +185,7 @@ export default function ComparePage({ params }: ComparePageProps) {
               <div className="p-2 rounded-full bg-gradient-to-br from-brand-500 to-accent-500">
                 <Plus className="h-5 w-5 text-white" />
               </div>
-              Adicionar Empresa
+              {t('addCompany', 'Adicionar Empresa')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -192,7 +194,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-500/20 to-accent-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
                 <div className="relative">
                   <Input
-                    placeholder="Digite o CNPJ da empresa..."
+                    placeholder={t('cnpjPlaceholder', 'Digite o CNPJ da empresa...')}
                     value={cnpjInput}
                     onChange={(e) => handleCnpjChange(e.target.value)}
                     maxLength={18}
@@ -208,18 +210,18 @@ export default function ComparePage({ params }: ComparePageProps) {
                 {isLoading ? (
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    Buscando...
+                    {t('searching', 'Buscando...')}
                   </div>
                 ) : (
                   <>
                     <Search className="h-4 w-4 mr-2" />
-                    Adicionar
+                    {t('add', 'Adicionar')}
                   </>
                 )}
               </Button>
             </div>
             <p className="text-sm text-center font-medium text-gray-700 dark:text-gray-300 mt-4 p-3 bg-gradient-to-r from-brand-100 to-accent-100 dark:from-brand-900/70 dark:to-accent-900/70 border border-brand-300 dark:border-brand-700 rounded-lg">
-              {companies.length}/4 empresas adicionadas
+              {t('companiesAdded', `${companies.length}/4 empresas adicionadas`)}
             </p>
           </CardContent>
         </Card>
@@ -232,10 +234,10 @@ export default function ComparePage({ params }: ComparePageProps) {
                 <TrendingUp className="h-10 w-10 text-brand-500" />
               </div>
               <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-                Nenhuma empresa adicionada
+                {t('noCompaniesAdded', 'Nenhuma empresa adicionada')}
               </h3>
               <p className="text-lg text-muted-foreground max-w-md mx-auto">
-                Adicione empresas usando o formulário acima para começar a comparação.
+                {t('noCompaniesDesc', 'Adicione empresas usando o formulário acima para começar a comparação.')}
               </p>
             </CardContent>
           </Card>
@@ -285,16 +287,16 @@ export default function ComparePage({ params }: ComparePageProps) {
 
                   <div>
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                      Atividade Principal
+                      {t('labels.mainActivity', 'Atividade Principal')}
                     </label>
                     <p className="text-sm">
-                      {company.cnaePrincipal || 'Não informado'}
+                      {company.cnaePrincipal || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
                   <div>
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                      Localização
+                      {t('labels.location', 'Localização')}
                     </label>
                     <p className="text-sm flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
@@ -304,7 +306,7 @@ export default function ComparePage({ params }: ComparePageProps) {
 
                   <div>
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                      Data de Abertura
+                      {t('labels.openingDate', 'Data de Abertura')}
                     </label>
                     <p className="text-sm flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
@@ -315,7 +317,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                   {company.capitalSocial && (
                     <div>
                       <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                        Capital Social
+                        {t('labels.socialCapital', 'Capital Social')}
                       </label>
                       <p className="text-sm flex items-center gap-1 font-medium">
                         <DollarSign className="h-3 w-3" />
@@ -326,17 +328,17 @@ export default function ComparePage({ params }: ComparePageProps) {
 
                   <div>
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                      Natureza Jurídica
+                      {t('labels.legalNature', 'Natureza Jurídica')}
                     </label>
                     <p className="text-sm">
-                      {company.naturezaJuridica || 'Não informado'}
+                      {company.naturezaJuridica || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
                   {company.porte && (
                     <div>
                       <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                        Porte
+                        {t('labels.size', 'Porte')}
                       </label>
                       <p className="text-sm">{company.porte}</p>
                     </div>
@@ -355,7 +357,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                 <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500">
                   <FileText className="h-6 w-6 text-white" />
                 </div>
-                Resumo da Comparação
+                {t('comparisonSummary', 'Resumo da Comparação')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -364,28 +366,28 @@ export default function ComparePage({ params }: ComparePageProps) {
                   <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-3">
                     {companies.filter(c => c.situacao?.toLowerCase() === 'ativa').length}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">Empresas Ativas</div>
+                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.activeCompanies', 'Empresas Ativas')}</div>
                 </div>
 
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-950/50 dark:to-brand-900/50 border-2 border-brand-200 dark:border-brand-800 hover:shadow-lg transition-all duration-300">
                   <div className="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-3">
                     {new Set(companies.map(c => c.endereco?.uf).filter(Boolean)).size}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">Estados Diferentes</div>
+                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.differentStates', 'Estados Diferentes')}</div>
                 </div>
 
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-2 border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300">
                   <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">
                     {new Set(companies.map(c => c.cnaePrincipal)).size}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">CNAEs Diferentes</div>
+                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.differentCnaes', 'CNAEs Diferentes')}</div>
                 </div>
 
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/50 dark:to-purple-900/50 border-2 border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-300">
                   <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-3">
                     {companies.filter(c => c.capitalSocial && parseFloat(c.capitalSocial) > 0).length}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">Com Capital Informado</div>
+                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.withCapital', 'Com Capital Informado')}</div>
                 </div>
               </div>
             </CardContent>

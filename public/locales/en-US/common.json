@@ -24,5 +24,11 @@
   "systemMode": "System",
   "language": "Language",
   "portuguese": "Português",
-  "english": "English"
+  "english": "English",
+  "compareCompanies": "Compare companies",
+  "aboutProject": "About the project",
+  "footer": {
+    "developedBy": "Developed by the community",
+    "dataSource": "Data from the Brazilian Federal Revenue"
+  }
 }

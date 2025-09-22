@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import Image from "next/image";
+import { useTranslation } from '@/lib/i18n';
 import {
   Github,
   Globe,
@@ -34,6 +35,7 @@ interface AboutPageProps {
 }
 
 export default function AboutPage({ params }: AboutPageProps) {
+  const { t } = useTranslation('about')
   const [isEmailCopied, setIsEmailCopied] = useState(false)
 
   const handleCopyEmail = async () => {
@@ -48,55 +50,55 @@ export default function AboutPage({ params }: AboutPageProps) {
   const features = [
     {
       icon: <Database className="h-6 w-6" />,
-      title: 'Dados Atualizados',
-      description: 'Informações sempre atualizadas diretamente da Receita Federal'
+      title: t('features.updatedData.title', 'Dados Atualizados'),
+      description: t('features.updatedData.description', 'Informações sempre atualizadas diretamente da Receita Federal')
     },
     {
       icon: <Zap className="h-6 w-6" />,
-      title: 'Consulta Rápida',
-      description: 'Resultados instantâneos com interface otimizada'
+      title: t('features.fastQuery.title', 'Consulta Rápida'),
+      description: t('features.fastQuery.description', 'Resultados instantâneos com interface otimizada')
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: 'Totalmente Gratuito',
-      description: 'Sem limites, sem cadastro, sem custos ocultos'
+      title: t('features.free.title', 'Totalmente Gratuito'),
+      description: t('features.free.description', 'Sem limites, sem cadastro, sem custos ocultos')
     },
     {
       icon: <Globe className="h-6 w-6" />,
-      title: 'Open Source',
-      description: 'Código aberto e transparente para toda a comunidade'
+      title: t('features.openSource.title', 'Open Source'),
+      description: t('features.openSource.description', 'Código aberto e transparente para toda a comunidade')
     }
   ]
 
   const technologies = [
     {
       name: 'Next.js 14',
-      description: 'Framework React moderno',
+      description: t('technologies.nextjs', 'Framework React moderno'),
       icon: <SiNextdotjs className="h-5 w-5" />
     },
     {
       name: 'TypeScript',
-      description: 'Tipagem estática',
+      description: t('technologies.typescript', 'Tipagem estática'),
       icon: <SiTypescript className="h-5 w-5 text-blue-600" />
     },
     {
       name: 'TailwindCSS',
-      description: 'Estilização utilitária',
+      description: t('technologies.tailwind', 'Estilização utilitária'),
       icon: <SiTailwindcss className="h-5 w-5 text-cyan-500" />
     },
     {
       name: 'shadcn/ui',
-      description: 'Componentes acessíveis',
+      description: t('technologies.shadcn', 'Componentes acessíveis'),
       icon: <SiReact className="h-5 w-5 text-blue-500" />
     },
     {
       name: 'React Query',
-      description: 'Gerenciamento de estado',
+      description: t('technologies.reactQuery', 'Gerenciamento de estado'),
       icon: <SiReactquery className="h-5 w-5 text-red-500" />
     },
     {
       name: 'IndexedDB',
-      description: 'Cache offline',
+      description: t('technologies.indexeddb', 'Cache offline'),
       icon: <MdStorage className="h-5 w-5 text-orange-500" />
     }
   ]
@@ -104,15 +106,15 @@ export default function AboutPage({ params }: AboutPageProps) {
   const contributors = [
     {
       name: "Walisson",
-      role: "Criador do CNPJfy",
-      description: "Desenvolvedor do frontend",
+      role: t('contributors.walisson.role', 'Criador do CNPJfy'),
+      description: t('contributors.walisson.description', 'Desenvolvedor do frontend'),
       github: "https://github.com/WalissonVinicius",
       image: "/wv.jpg" // está no public
     },
     {
       name: "Hitmasu",
-      role: "Desenvolvedor da OpenCNPJ",
-      description: "Desenvolvedor principal da API e datasets",
+      role: t('contributors.hitmasu.role', 'Desenvolvedor da OpenCNPJ'),
+      description: t('contributors.hitmasu.description', 'Desenvolvedor principal da API e datasets'),
       github: "https://github.com/Hitmasu",
       image: "/himatsu.jpeg" // está no public
     }
@@ -124,10 +126,10 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Hero Section */}
         <div className="text-center space-y-6">
           <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
-            Sobre o CNPJfy
+            {t('title', 'Sobre o CNPJfy')}
           </h1>
           <p className="text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
-            Uma plataforma gratuita e open source para consulta de dados empresariais brasileiros
+            {t('subtitle', 'Uma plataforma gratuita e open source para consulta de dados empresariais brasileiros')}
           </p>
           <div className="flex justify-center gap-6">
             <Button
@@ -136,7 +138,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             >
               <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
                 <Github className="h-5 w-5 mr-2" />
-                Ver no GitHub
+                {t('viewOnGithub', 'Ver no GitHub')}
                 <ExternalLink className="h-5 w-5 ml-2" />
               </Link>
             </Button>
@@ -151,18 +153,15 @@ export default function AboutPage({ params }: AboutPageProps) {
               <div className="p-3 rounded-2xl bg-gradient-to-br from-red-500 to-pink-500">
                 <Heart className="h-6 w-6 text-white" />
               </div>
-              Nossa Missão
+              {t('mission.title', 'Nossa Missão')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6 text-center">
             <p className="text-lg leading-relaxed">
-              Democratizar o acesso às informações empresariais brasileiras, fornecendo uma
-              plataforma gratuita, rápida e confiável para consulta de dados de CNPJ.
+              {t('mission.description1', 'Democratizar o acesso às informações empresariais brasileiras, fornecendo uma plataforma gratuita, rápida e confiável para consulta de dados de CNPJ.')}
             </p>
             <p className="text-lg leading-relaxed">
-              Acreditamos que informações públicas devem ser acessíveis a todos, sem barreiras
-              financeiras ou técnicas. Por isso, mantemos o CNPJfy como um projeto 100%
-              gratuito e open source.
+              {t('mission.description2', 'Acreditamos que informações públicas devem ser acessíveis a todos, sem barreiras financeiras ou técnicas. Por isso, mantemos o CNPJfy como um projeto 100% gratuito e open source.')}
             </p>
           </CardContent>
         </Card>
@@ -170,7 +169,7 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Features */}
         <div>
           <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-            Principais Recursos
+            {t('features.title', 'Principais Recursos')}
           </h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
@@ -195,7 +194,7 @@ export default function AboutPage({ params }: AboutPageProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Code className="h-6 w-6" />
-              Tecnologias Utilizadas
+              {t('technologies.title', 'Tecnologias Utilizadas')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -220,20 +219,18 @@ export default function AboutPage({ params }: AboutPageProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Database className="h-6 w-6" />
-              Fonte dos Dados
+              {t('dataSource.title', 'Fonte dos Dados')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              Todos os dados são obtidos diretamente dos arquivos públicos disponibilizados
-              pela <strong>Receita Federal do Brasil</strong>, garantindo autenticidade e
-              atualização constante das informações.
+              {t('dataSource.description', 'Todos os dados são obtidos diretamente dos arquivos públicos disponibilizados pela Receita Federal do Brasil, garantindo autenticidade e atualização constante das informações.')}
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">Receita Federal</Badge>
-              <Badge variant="secondary">Dados Públicos</Badge>
-              <Badge variant="secondary">Atualizações Mensais</Badge>
-              <Badge variant="secondary">100% Oficial</Badge>
+              <Badge variant="secondary">{t('dataSource.badges.receita', 'Receita Federal')}</Badge>
+              <Badge variant="secondary">{t('dataSource.badges.public', 'Dados Públicos')}</Badge>
+              <Badge variant="secondary">{t('dataSource.badges.monthly', 'Atualizações Mensais')}</Badge>
+              <Badge variant="secondary">{t('dataSource.badges.official', '100% Oficial')}</Badge>
             </div>
           </CardContent>
         </Card>
@@ -242,7 +239,7 @@ export default function AboutPage({ params }: AboutPageProps) {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              Contribuidores
+              {t('contributors.title', 'Contribuidores')}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -287,25 +284,25 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Statistics */}
         <Card>
           <CardHeader>
-            <CardTitle>Estatísticas do Projeto</CardTitle>
+            <CardTitle>{t('statistics.title', 'Estatísticas do Projeto')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-4 text-center">
               <div>
                 <div className="text-3xl font-bold text-primary">50M+</div>
-                <div className="text-sm text-muted-foreground">Empresas no Banco</div>
+                <div className="text-sm text-muted-foreground">{t('statistics.companies', 'Empresas no Banco')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-green-600">100%</div>
-                <div className="text-sm text-muted-foreground">Gratuito</div>
+                <div className="text-sm text-muted-foreground">{t('statistics.free', 'Gratuito')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-blue-600">24/7</div>
-                <div className="text-sm text-muted-foreground">Disponibilidade</div>
+                <div className="text-sm text-muted-foreground">{t('statistics.availability', 'Disponibilidade')}</div>
               </div>
               <div>
                 <div className="text-3xl font-bold text-purple-600">Open</div>
-                <div className="text-sm text-muted-foreground">Source</div>
+                <div className="text-sm text-muted-foreground">{t('statistics.source', 'Source')}</div>
               </div>
             </div>
           </CardContent>
@@ -316,31 +313,30 @@ export default function AboutPage({ params }: AboutPageProps) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-6 w-6" />
-              Apoie o Projeto
+              {t('support.title', 'Apoie o Projeto')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p>
-              O CNPJfy é mantido por voluntários e depende da comunidade para continuar
-              funcionando. Você pode ajudar de várias formas:
+              {t('support.description', 'O CNPJfy é mantido por voluntários e depende da comunidade para continuar funcionando. Você pode ajudar de várias formas:')}
             </p>
             <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
-                <h4 className="font-semibold">Para Desenvolvedores</h4>
+                <h4 className="font-semibold">{t('support.developers.title', 'Para Desenvolvedores')}</h4>
                 <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Contribua com código no GitHub</li>
-                  <li>• Reporte bugs e sugestões</li>
-                  <li>• Melhore a documentação</li>
-                  <li>• Compartilhe o projeto</li>
+                  <li>• {t('support.developers.contribute', 'Contribua com código no GitHub')}</li>
+                  <li>• {t('support.developers.report', 'Reporte bugs e sugestões')}</li>
+                  <li>• {t('support.developers.docs', 'Melhore a documentação')}</li>
+                  <li>• {t('support.developers.share', 'Compartilhe o projeto')}</li>
                 </ul>
               </div>
               <div className="space-y-2">
-                <h4 className="font-semibold">Para Usuários</h4>
+                <h4 className="font-semibold">{t('support.users.title', 'Para Usuários')}</h4>
                 <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Dê uma estrela no GitHub</li>
-                  <li>• Compartilhe com outros</li>
-                  <li>• Reporte problemas</li>
-                  <li>• Sugira melhorias</li>
+                  <li>• {t('support.users.star', 'Dê uma estrela no GitHub')}</li>
+                  <li>• {t('support.users.share', 'Compartilhe com outros')}</li>
+                  <li>• {t('support.users.report', 'Reporte problemas')}</li>
+                  <li>• {t('support.users.suggest', 'Sugira melhorias')}</li>
                 </ul>
               </div>
             </div>
@@ -348,7 +344,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               <Button asChild>
                 <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
                   <Star className="h-4 w-4 mr-2" />
-                  Dar Estrela no GitHub
+                  {t('support.starButton', 'Dar Estrela no GitHub')}
                 </Link>
               </Button>
               <Button
@@ -358,12 +354,12 @@ export default function AboutPage({ params }: AboutPageProps) {
                 {isEmailCopied ? (
                   <>
                     <Check className="h-4 w-4 mr-2 text-green-500" />
-                    Copiado para área de transferência
+                    {t('support.emailCopied', 'Copiado para área de transferência')}
                   </>
                 ) : (
                   <>
                     <Mail className="h-4 w-4 mr-2" />
-                    Entrar em Contato
+                    {t('support.contactButton', 'Entrar em Contato')}
                   </>
                 )}
               </Button>
@@ -375,15 +371,15 @@ export default function AboutPage({ params }: AboutPageProps) {
         <Card>
           <CardContent className="p-6 text-center">
             <p className="text-sm text-muted-foreground">
-              Este projeto é licenciado sob a{' '}
+              {t('license.text', 'Este projeto é licenciado sob a')}{' '}
               <Link
                 href="https://github.com/WalissonVinicius/cnpjfy/blob/main/LICENSE"
                 target="_blank"
                 className="text-primary hover:underline"
               >
-                Licença MIT
+                {t('license.mit', 'Licença MIT')}
               </Link>
-              {' '}• Feito com ❤️ para a comunidade brasileira
+              {' '}• {t('license.madeWith', 'Feito com ❤️ para a comunidade brasileira')}
             </p>
           </CardContent>
         </Card>
