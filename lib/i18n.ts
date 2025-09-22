@@ -74,13 +74,25 @@ export function useTranslation(namespace: string = 'common') {
     });
   }, [locale, namespace]);
 
-  const t = (key: string, fallback?: string): string => {
+  const t = (key: string, fallbackOrParams?: string | Record<string, any>, params?: Record<string, any>): string => {
     if (!translations[locale]?.[namespace]) {
-      return fallback || key;
+      return (typeof fallbackOrParams === 'string' ? fallbackOrParams : key);
     }
     
-    const value = getNestedValue(translations[locale][namespace], key);
-    return value || fallback || key;
+    let value = getNestedValue(translations[locale][namespace], key);
+    if (!value) {
+      value = (typeof fallbackOrParams === 'string' ? fallbackOrParams : key);
+    }
+    
+    // Handle interpolation
+    const interpolationParams = typeof fallbackOrParams === 'object' ? fallbackOrParams : params;
+    if (interpolationParams && typeof value === 'string') {
+      return value.replace(/\{\{(\w+)\}\}/g, (match, paramKey) => {
+        return interpolationParams[paramKey]?.toString() || match;
+      });
+    }
+    
+    return value;
   };
 
   return { t, locale, isLoaded };

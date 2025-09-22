@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const languages = [
-  { code: 'pt-BR', name: 'Português', flag: '🇧🇷' },
-  { code: 'en-US', name: 'English', flag: '🇺🇸' },
+  { code: 'pt-BR', name: 'Português', flagClass: 'fi fi-br' },
+  { code: 'en-US', name: 'English', flagClass: 'fi fi-us' },
 ];
 
 export function LanguageSwitcher() {
@@ -45,7 +45,7 @@ export function LanguageSwitcher() {
             onClick={() => switchLanguage(language.code)}
             className={currentLocale === language.code ? 'bg-accent' : ''}
           >
-            <span className="mr-2">{language.flag}</span>
+            <span className={`${language.flagClass} mr-2`}></span>
             {language.name}
           </DropdownMenuItem>
         ))}

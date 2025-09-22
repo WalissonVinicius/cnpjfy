@@ -129,7 +129,7 @@ export default function ComparePage({ params }: ComparePageProps) {
 
       toast({
         title: t('companyAdded', 'Empresa adicionada'),
-        description: t('companyAddedDesc', `${company.razaoSocial} foi adicionada à comparação.`),
+        description: t('companyAddedDesc', { companyName: company.razaoSocial }),
       })
     } catch (error) {
       toast({
@@ -221,7 +221,7 @@ export default function ComparePage({ params }: ComparePageProps) {
               </Button>
             </div>
             <p className="text-sm text-center font-medium text-gray-700 dark:text-gray-300 mt-4 p-3 bg-gradient-to-r from-brand-100 to-accent-100 dark:from-brand-900/70 dark:to-accent-900/70 border border-brand-300 dark:border-brand-700 rounded-lg">
-              {t('companiesAdded', `${companies.length}/4 empresas adicionadas`)}
+              {t('companiesAdded', { count: companies.length })}
             </p>
           </CardContent>
         </Card>
