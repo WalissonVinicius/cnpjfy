@@ -22,7 +22,7 @@ async function CompanyData({ cnpj, locale }: { cnpj: string; locale: string }) {
     const company = await getCompanyByCNPJ(cnpj);
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-8 company-content">
         <CompanyHistoryTracker company={company} />
         <CompanyHeader company={company} />
 
@@ -32,7 +32,7 @@ async function CompanyData({ cnpj, locale }: { cnpj: string; locale: string }) {
             <CompanyPartners company={company} />
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 no-print">
             <CompanyActions company={company} locale={locale} />
           </div>
         </div>

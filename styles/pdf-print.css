@@ -1,0 +1,131 @@
+/* Estilos específicos para PDF e impressão */
+
+/* Reset para PDF - força background branco */
+.pdf-content,
+.pdf-content * {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+/* Estilos para cabeçalhos no PDF */
+.pdf-content h1,
+.pdf-content h2,
+.pdf-content h3,
+.pdf-content h4,
+.pdf-content h5,
+.pdf-content h6 {
+  color: #1f2937 !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Estilos para parágrafos e texto */
+.pdf-content p,
+.pdf-content span,
+.pdf-content div {
+  color: #1f2937 !important;
+  background: transparent !important;
+  line-height: 1.5 !important;
+}
+
+/* Estilos para cards e containers */
+.pdf-content .card,
+.pdf-content [class*="card"] {
+  background-color: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Estilos para badges e labels */
+.pdf-content .badge,
+.pdf-content [class*="badge"] {
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  border: 1px solid #d1d5db !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 4px !important;
+  font-size: 0.875rem !important;
+}
+
+/* Estilos para tabelas */
+.pdf-content table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-bottom: 1rem !important;
+}
+
+.pdf-content th,
+.pdf-content td {
+  border: 1px solid #e5e7eb !important;
+  padding: 0.5rem !important;
+  text-align: left !important;
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+.pdf-content th {
+  background-color: #f9fafb !important;
+  font-weight: 600 !important;
+}
+
+/* Remover elementos desnecessários no PDF */
+.pdf-content .no-print,
+.pdf-content button,
+.pdf-content [role="button"],
+.pdf-content .cursor-pointer {
+  display: none !important;
+}
+
+/* Estilos para listas */
+.pdf-content ul,
+.pdf-content ol {
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.pdf-content li {
+  margin-bottom: 0.25rem !important;
+  color: #1f2937 !important;
+}
+
+/* Quebras de página */
+.pdf-page-break {
+  page-break-before: always !important;
+}
+
+.pdf-avoid-break {
+  page-break-inside: avoid !important;
+}
+
+/* Estilos para status e indicadores */
+.pdf-content .status-active {
+  color: #059669 !important;
+  background-color: #ecfdf5 !important;
+}
+
+.pdf-content .status-inactive {
+  color: #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+/* Ajustes de espaçamento */
+.pdf-content .space-y-4 > * + * {
+  margin-top: 1rem !important;
+}
+
+.pdf-content .space-y-2 > * + * {
+  margin-top: 0.5rem !important;
+}
+
+/* Estilos para grid layouts */
+.pdf-content .grid {
+  display: block !important;
+}
+
+.pdf-content .grid > * {
+  margin-bottom: 1rem !important;
+}

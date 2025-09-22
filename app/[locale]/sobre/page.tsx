@@ -19,10 +19,10 @@ import {
   Star,
   Check
 } from 'lucide-react'
-import { 
-  SiNextdotjs, 
-  SiTypescript, 
-  SiTailwindcss, 
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
   SiReact,
   SiReactquery
 } from 'react-icons/si'
@@ -69,33 +69,33 @@ export default function AboutPage({ params }: AboutPageProps) {
   ]
 
   const technologies = [
-    { 
-      name: 'Next.js 14', 
+    {
+      name: 'Next.js 14',
       description: 'Framework React moderno',
       icon: <SiNextdotjs className="h-5 w-5" />
     },
-    { 
-      name: 'TypeScript', 
+    {
+      name: 'TypeScript',
       description: 'Tipagem estática',
       icon: <SiTypescript className="h-5 w-5 text-blue-600" />
     },
-    { 
-      name: 'TailwindCSS', 
+    {
+      name: 'TailwindCSS',
       description: 'Estilização utilitária',
       icon: <SiTailwindcss className="h-5 w-5 text-cyan-500" />
     },
-    { 
-      name: 'shadcn/ui', 
+    {
+      name: 'shadcn/ui',
       description: 'Componentes acessíveis',
       icon: <SiReact className="h-5 w-5 text-blue-500" />
     },
-    { 
-      name: 'React Query', 
+    {
+      name: 'React Query',
       description: 'Gerenciamento de estado',
       icon: <SiReactquery className="h-5 w-5 text-red-500" />
     },
-    { 
-      name: 'IndexedDB', 
+    {
+      name: 'IndexedDB',
       description: 'Cache offline',
       icon: <MdStorage className="h-5 w-5 text-orange-500" />
     }
