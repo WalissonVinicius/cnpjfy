@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -15,7 +16,8 @@ import {
   Users,
   ExternalLink,
   Mail,
-  Star
+  Star,
+  Check
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -24,6 +26,17 @@ interface AboutPageProps {
 }
 
 export default function AboutPage({ params }: AboutPageProps) {
+  const [isEmailCopied, setIsEmailCopied] = useState(false)
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('walissonvinicius10654@gmail.com')
+      setIsEmailCopied(true)
+      setTimeout(() => setIsEmailCopied(false), 2000)
+    } catch (error) {
+      console.error('Erro ao copiar email:', error)
+    }
+  }
   const features = [
     {
       icon: <Database className="h-6 w-6" />,
@@ -85,7 +98,7 @@ export default function AboutPage({ params }: AboutPageProps) {
             Uma plataforma gratuita e open source para consulta de dados empresariais brasileiros
           </p>
           <div className="flex justify-center gap-6">
-            <Button 
+            <Button
               asChild
               className="bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
@@ -95,17 +108,7 @@ export default function AboutPage({ params }: AboutPageProps) {
                 <ExternalLink className="h-5 w-5 ml-2" />
               </Link>
             </Button>
-            <Button 
-              variant="outline" 
-              asChild
-              className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            >
-              <Link href="https://opencnpj.org" target="_blank">
-                <Globe className="h-5 w-5 mr-2" />
-                Site Oficial
-                <ExternalLink className="h-5 w-5 ml-2" />
-              </Link>
-            </Button>
+
           </div>
         </div>
 
@@ -205,49 +208,49 @@ export default function AboutPage({ params }: AboutPageProps) {
 
         {/* Contributors */}
         <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          Contribuidores
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-4 md:grid-cols-2">
-          {contributors.map((contributor, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-4 p-4 rounded-lg border"
-            >
-              {/* Avatar */}
-              <div className="w-12 h-12 rounded-full overflow-hidden">
-                <Image
-                  src={contributor.image}
-                  alt={contributor.name}
-                  width={48}
-                  height={48}
-                  className="object-cover"
-                />
-              </div>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              Contribuidores
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-2">
+              {contributors.map((contributor, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-4 rounded-lg border"
+                >
+                  {/* Avatar */}
+                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                    <Image
+                      src={contributor.image}
+                      alt={contributor.name}
+                      width={48}
+                      height={48}
+                      className="object-cover"
+                    />
+                  </div>
 
-              {/* Informações */}
-              <div className="flex-1">
-                <h4 className="font-semibold">{contributor.name}</h4>
-                <p className="text-sm text-primary">{contributor.role}</p>
-                <p className="text-sm text-muted-foreground">
-                  {contributor.description}
-                </p>
-              </div>
+                  {/* Informações */}
+                  <div className="flex-1">
+                    <h4 className="font-semibold">{contributor.name}</h4>
+                    <p className="text-sm text-primary">{contributor.role}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {contributor.description}
+                    </p>
+                  </div>
 
-              {/* GitHub */}
-              <Button variant="outline" size="sm" asChild>
-                <Link href={contributor.github} target="_blank">
-                  <Github className="h-4 w-4" />
-                </Link>
-              </Button>
+                  {/* GitHub */}
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={contributor.github} target="_blank">
+                      <Github className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+          </CardContent>
+        </Card>
 
         {/* Statistics */}
         <Card>
@@ -316,11 +319,21 @@ export default function AboutPage({ params }: AboutPageProps) {
                   Dar Estrela no GitHub
                 </Link>
               </Button>
-              <Button variant="outline" asChild>
-                <Link href="mailto:contato@opencnpj.org">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Entrar em Contato
-                </Link>
+              <Button
+                variant="outline"
+                onClick={handleCopyEmail}
+              >
+                {isEmailCopied ? (
+                  <>
+                    <Check className="h-4 w-4 mr-2 text-green-500" />
+                    Copiado para área de transferência
+                  </>
+                ) : (
+                  <>
+                    <Mail className="h-4 w-4 mr-2" />
+                    Entrar em Contato
+                  </>
+                )}
               </Button>
             </div>
           </CardContent>
