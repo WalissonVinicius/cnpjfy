@@ -830,9 +830,9 @@ public class OpenCNPJClient {
           </section>
 
           {/* Suporte */}
-          <section className="bg-gradient-to-r from-brand-50 to-accent-50 dark:from-brand-950/20 dark:to-accent-950/20 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4">🤝 Suporte e Comunidade</h2>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+          <section className="bg-gradient-to-r from-brand-100 to-accent-100 dark:from-brand-900/40 dark:to-accent-900/40 border border-brand-200/50 dark:border-brand-700/50 rounded-2xl p-8 text-center">
+            <h2 className="text-2xl font-bold mb-4 text-brand-900 dark:text-brand-100">🤝 Suporte e Comunidade</h2>
+            <p className="text-brand-700 dark:text-brand-300 mb-6 max-w-2xl mx-auto">
               Precisa de ajuda? Encontrou um bug? Quer contribuir? Nossa comunidade está aqui para ajudar!
             </p>
 
@@ -840,7 +840,7 @@ public class OpenCNPJClient {
               <Button 
                 variant="outline" 
                 asChild
-                className="h-12 px-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-brand-300 dark:border-brand-700 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-brand-700 dark:text-brand-300 hover:text-brand-900 dark:hover:text-brand-100"
               >
                 <a href="https://github.com/Hitmasu/OpenCNPJ" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4 mr-2" />
@@ -850,7 +850,7 @@ public class OpenCNPJClient {
               <Button 
                 variant="outline" 
                 asChild
-                className="h-12 px-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-red-200 dark:border-red-800 hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-red-700 dark:text-red-300 hover:text-red-900 dark:hover:text-red-100"
               >
                 <a href="https://github.com/Hitmasu/OpenCNPJ/issues" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="h-4 w-4 mr-2" />
