@@ -121,7 +121,7 @@ export function CompanyBasicInfo({ company }: CompanyBasicInfoProps) {
               <label className="text-sm font-medium text-muted-foreground">
                 CNAEs Secundárias ({company.cnaesSecundarios.length})
               </label>
-              <div className="mt-2 space-y-1 max-h-32 overflow-y-auto">
+              <div className="mt-2 space-y-1">
                 {company.cnaesSecundarios.slice(0, 5).map((cnae, index) => (
                   <p key={index} className="text-sm">
                     {cnae}

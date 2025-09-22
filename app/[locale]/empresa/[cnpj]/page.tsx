@@ -29,8 +29,6 @@ async function CompanyData({ cnpj, locale }: { cnpj: string; locale: string }) {
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-8">
             <CompanyBasicInfo company={company} />
-            <CompanyAddress company={company} />
-            <CompanyCNAE company={company} />
             <CompanyPartners company={company} />
           </div>
 

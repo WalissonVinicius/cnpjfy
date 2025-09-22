@@ -21,11 +21,11 @@ import { cnpjMask, cnpjClean, isValidCnpj } from '@/lib/cnpj'
 import { formatCurrency, formatDate, formatCNPJ } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
 import { Company } from '@/lib/api'
-import { 
-  getComparisonCompanies, 
-  addComparisonCompany, 
+import {
+  getComparisonCompanies,
+  addComparisonCompany,
   removeComparisonCompany,
-  type ComparisonCompany 
+  type ComparisonCompany
 } from '@/lib/storage'
 
 interface ComparePageProps {
@@ -100,15 +100,15 @@ export default function ComparePage({ params }: ComparePageProps) {
     try {
       // Use internal API route to avoid CORS issues
       const response = await fetch(`/api/company/${cleanCnpj}`)
-      
+
       if (!response.ok) {
         throw new Error('Empresa não encontrada')
       }
-      
+
       const company = await response.json()
       setCompanies(prev => [...prev, company])
       setCnpjInput('')
-      
+
       // Save to localStorage
       addComparisonCompany({
         cnpj: company.cnpj,
@@ -124,7 +124,7 @@ export default function ComparePage({ params }: ComparePageProps) {
         telefone: company.telefone,
         email: company.email,
       })
-      
+
       toast({
         title: 'Empresa adicionada',
         description: `${company.razaoSocial} foi adicionada à comparação.`,
@@ -218,7 +218,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                 )}
               </Button>
             </div>
-            <p className="text-sm text-center text-muted-foreground mt-4 p-3 bg-gradient-to-r from-brand-50 to-accent-50 dark:from-brand-950/50 dark:to-accent-950/50 border border-brand-200 dark:border-brand-800 rounded-lg">
+            <p className="text-sm text-center font-medium text-gray-700 dark:text-gray-300 mt-4 p-3 bg-gradient-to-r from-brand-100 to-accent-100 dark:from-brand-900/70 dark:to-accent-900/70 border border-brand-300 dark:border-brand-700 rounded-lg">
               {companies.length}/4 empresas adicionadas
             </p>
           </CardContent>
@@ -244,7 +244,7 @@ export default function ComparePage({ params }: ComparePageProps) {
             {companies.map((company) => (
               <Card key={company.cnpj} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-105">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <Button
                   variant="ghost"
                   size="sm"
