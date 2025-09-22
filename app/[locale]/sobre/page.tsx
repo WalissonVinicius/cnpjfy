@@ -19,6 +19,14 @@ import {
   Star,
   Check
 } from 'lucide-react'
+import { 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiTailwindcss, 
+  SiReact,
+  SiReactquery
+} from 'react-icons/si'
+import { MdStorage } from 'react-icons/md'
 import Link from 'next/link'
 
 interface AboutPageProps {
@@ -61,12 +69,36 @@ export default function AboutPage({ params }: AboutPageProps) {
   ]
 
   const technologies = [
-    { name: 'Next.js 14', description: 'Framework React moderno' },
-    { name: 'TypeScript', description: 'Tipagem estática' },
-    { name: 'TailwindCSS', description: 'Estilização utilitária' },
-    { name: 'shadcn/ui', description: 'Componentes acessíveis' },
-    { name: 'React Query', description: 'Gerenciamento de estado' },
-    { name: 'IndexedDB', description: 'Cache offline' }
+    { 
+      name: 'Next.js 14', 
+      description: 'Framework React moderno',
+      icon: <SiNextdotjs className="h-5 w-5" />
+    },
+    { 
+      name: 'TypeScript', 
+      description: 'Tipagem estática',
+      icon: <SiTypescript className="h-5 w-5 text-blue-600" />
+    },
+    { 
+      name: 'TailwindCSS', 
+      description: 'Estilização utilitária',
+      icon: <SiTailwindcss className="h-5 w-5 text-cyan-500" />
+    },
+    { 
+      name: 'shadcn/ui', 
+      description: 'Componentes acessíveis',
+      icon: <SiReact className="h-5 w-5 text-blue-500" />
+    },
+    { 
+      name: 'React Query', 
+      description: 'Gerenciamento de estado',
+      icon: <SiReactquery className="h-5 w-5 text-red-500" />
+    },
+    { 
+      name: 'IndexedDB', 
+      description: 'Cache offline',
+      icon: <MdStorage className="h-5 w-5 text-orange-500" />
+    }
   ]
 
   const contributors = [
@@ -171,7 +203,7 @@ export default function AboutPage({ params }: AboutPageProps) {
               {technologies.map((tech, index) => (
                 <div key={index} className="flex items-center gap-3 p-3 rounded-lg border">
                   <div className="p-2 rounded bg-primary/10">
-                    <Code className="h-4 w-4" />
+                    {tech.icon}
                   </div>
                   <div>
                     <h4 className="font-medium">{tech.name}</h4>

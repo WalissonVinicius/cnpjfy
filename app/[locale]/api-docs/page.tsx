@@ -69,19 +69,19 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
 
       <div className="container mx-auto px-4 py-8 max-w-6xl relative z-10">
         <div className="space-y-12">
-          
+
           {/* Hero Section */}
           <div className="text-center space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-accent-500/10 border border-brand-500/20 mb-4">
               <BookOpen className="h-4 w-4 mr-2 text-brand-600 dark:text-brand-400" />
               <span className="text-sm font-medium text-brand-600 dark:text-brand-400">Documentação Técnica</span>
             </div>
-            
+
             <h1 className="text-4xl font-bold bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
               API OpenCNPJ
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Documentação completa da API pública para consulta de dados empresariais brasileiros. 
+              Documentação completa da API pública para consulta de dados empresariais brasileiros.
               Gratuita, rápida e sem necessidade de autenticação.
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
               📡 Endpoints Disponíveis
             </h2>
-            
+
             {/* Endpoint 1: Consultar Empresa */}
             <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -141,7 +141,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                     /{'{cnpj}'}
                   </code>
                 </div>
-                
+
                 <h3 className="text-xl font-semibold mb-3">Consultar Empresa por CNPJ</h3>
                 <p className="text-muted-foreground mb-6">
                   Retorna informações completas de uma empresa brasileira através do seu CNPJ.
@@ -242,7 +242,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                     /info
                   </code>
                 </div>
-                
+
                 <h3 className="text-xl font-semibold mb-3">Informações da Base de Dados</h3>
                 <p className="text-muted-foreground mb-6">
                   Retorna informações sobre a base de dados, incluindo data da última atualização e estatísticas.
@@ -282,7 +282,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
             <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
               📊 Códigos de Status HTTP
             </h2>
-            
+
             <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <CardContent className="p-6 relative z-10">
@@ -837,8 +837,8 @@ public class OpenCNPJClient {
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 asChild
                 className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-brand-300 dark:border-brand-700 hover:border-brand-500 hover:bg-brand-50 dark:hover:bg-brand-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-brand-700 dark:text-brand-300 hover:text-brand-900 dark:hover:text-brand-100"
               >
@@ -847,8 +847,8 @@ public class OpenCNPJClient {
                   GitHub
                 </a>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 asChild
                 className="h-12 px-6 bg-white dark:bg-gray-900 backdrop-blur-sm border-2 border-red-300 dark:border-red-700 hover:border-red-500 hover:bg-red-50 dark:hover:bg-red-950/50 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg text-red-700 dark:text-red-300 hover:text-red-900 dark:hover:text-red-100"
               >
