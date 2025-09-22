@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Copy, Check, BookOpen, Code, Globe, Zap, Shield, ExternalLink, Github } from 'lucide-react';
+import { Copy, Check, BookOpen, Code, Globe, Zap, Shield, ExternalLink, Github, MessageCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useTranslation } from '@/lib/i18n';
 
