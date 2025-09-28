@@ -13,6 +13,13 @@
 
 > 🏢 Interface moderna e intuitiva para consulta gratuita de dados empresariais brasileiros com recursos avançados.
 
+
+## 🌐 Preview
+![Preview do Portfólio](public/preview-background.png)
+
+**[🌐 Acesse o CNPJfy](https://www.cnpjfy.walisson.dev)** - Versão em produção
+
+
 ## 🚀 Rodando o projeto
 
 ### Pré-requisitos
@@ -49,10 +56,6 @@
    ```
 
 4. **Acesse:** http://localhost:3000
-
-## 🌐 Demo Online
-
-**[🚀 Acesse o CNPJfy](https://www.cnpjfy.walisson.dev)** - Versão em produção
 
 ## 🔌 Integração com API
 
