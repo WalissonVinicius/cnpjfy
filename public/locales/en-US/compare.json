@@ -18,6 +18,8 @@
   "limitReachedDesc": "You can compare a maximum of 4 companies.",
   "companyAdded": "Company added",
   "companyAddedDesc": "{{companyName}} was added to the comparison.",
+  "companyRemoved": "Company removed",
+  "companyRemovedDesc": "The company was removed from the comparison.",
   "errorFetchingCompany": "Error fetching company",
   "errorFetchingCompanyDesc": "Could not find the company with this CNPJ.",
   "labels": {

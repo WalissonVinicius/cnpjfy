@@ -159,9 +159,19 @@ export default function ComparePage({ params }: ComparePageProps) {
   }
 
   const handleRemoveCompany = (cnpj: string) => {
-    setCompanies(prev => prev.filter(company => company.cnpj !== cnpj))
+    console.log('Removendo empresa:', cnpj);
+    setCompanies(prev => {
+      const filtered = prev.filter(company => company.cnpj !== cnpj);
+      console.log('Empresas restantes:', filtered.length);
+      return filtered;
+    });
     // Remove from localStorage
-    removeComparisonCompany(cnpj)
+    removeComparisonCompany(cnpj);
+
+    toast({
+      title: t('companyRemoved', 'Empresa removida'),
+      description: t('companyRemovedDesc', 'A empresa foi removida da comparação.'),
+    });
   }
 
   const handleCnpjChange = (value: string) => {
@@ -261,13 +271,14 @@ export default function ComparePage({ params }: ComparePageProps) {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {companies.map((company) => (
               <Card key={company.cnpj} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="absolute top-3 right-3 h-8 w-8 p-0 z-10 bg-red-50 dark:bg-red-950/50 hover:bg-red-100 dark:hover:bg-red-950/70 text-red-600 dark:text-red-400 rounded-full transition-all duration-300 hover:scale-110"
+                  className="absolute top-3 right-3 h-8 w-8 p-0 z-50 bg-red-50 dark:bg-red-950/50 hover:bg-red-100 dark:hover:bg-red-950/70 text-red-600 dark:text-red-400 rounded-full transition-all duration-300 hover:scale-110 shadow-lg"
                   onClick={() => handleRemoveCompany(company.cnpj)}
+                  aria-label="Remover empresa"
                 >
                   <X className="h-4 w-4" />
                 </Button>

@@ -144,7 +144,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('description', 'Visualize e gerencie suas consultas anteriores com dados organizados e estatísticas detalhadas')}
           </p>
-          
+
           {searchHistory.length > 0 && (
             <div className="flex justify-center">
               <Button
@@ -175,7 +175,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     />
                   </div>
                 </div>
-                <Button 
+                <Button
                   className="h-12 px-6 bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-lg hover:shadow-xl hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
                 >
                   <Filter className="h-4 w-4 mr-2 text-white" />
@@ -203,7 +203,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                 }
               </p>
               {searchHistory.length === 0 && (
-                <Button 
+                <Button
                   asChild
                   className="bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                 >
@@ -244,12 +244,14 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <Badge className={`${getStatusColor(item.status || t('notInformed', 'Não informado'))} px-3 py-1 font-semibold`}>
-                        {item.status || t('notInformed', 'Não informado')}
-                      </Badge>
+                      {item.status && (
+                        <Badge className={`${getStatusColor(item.status)} px-3 py-1 font-semibold`}>
+                          {item.status}
+                        </Badge>
+                      )}
 
-                      <Button 
-                        asChild 
+                      <Button
+                        asChild
                         size="sm"
                         className="h-10 px-4 bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-md hover:shadow-lg hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
                       >

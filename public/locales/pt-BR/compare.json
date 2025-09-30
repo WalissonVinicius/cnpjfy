@@ -18,6 +18,8 @@
   "limitReachedDesc": "Você pode comparar no máximo 4 empresas.",
   "companyAdded": "Empresa adicionada",
   "companyAddedDesc": "{{companyName}} foi adicionada à comparação.",
+  "companyRemoved": "Empresa removida",
+  "companyRemovedDesc": "A empresa foi removida da comparação.",
   "errorFetchingCompany": "Erro ao buscar empresa",
   "errorFetchingCompanyDesc": "Não foi possível encontrar a empresa com este CNPJ.",
   "labels": {
