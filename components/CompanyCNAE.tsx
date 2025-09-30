@@ -1,50 +1,48 @@
 "use client";
 
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Activity, Target, List } from 'lucide-react';
-
-interface CNAEItem {
-  codigo?: string;
-  descricao?: string;
-  principal?: boolean;
-}
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import {
+  Activity,
+  Target,
+  List,
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Briefcase
+} from 'lucide-react';
+import { CNAEItem, NaturezaJuridica } from '@/lib/api';
 
 interface CompanyCNAEProps {
   company: {
-    cnae_principal?: CNAEItem;
-    cnaes_secundarios?: CNAEItem[];
-    natureza_juridica?: {
-      codigo?: string;
-      descricao?: string;
-    };
+    cnaePrincipal?: CNAEItem;
+    cnaesSecundarios?: CNAEItem[];
+    naturezaJuridica?: NaturezaJuridica;
     porte?: string;
   };
 }
 
 export function CompanyCNAE({ company }: CompanyCNAEProps) {
-  const { cnae_principal, cnaes_secundarios, natureza_juridica, porte } = company;
+  const { cnaePrincipal, cnaesSecundarios, naturezaJuridica, porte } = company;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showAll, setShowAll] = useState(false);
 
-  const formatCNAE = (cnae: CNAEItem) => {
-    if (!cnae.codigo && !cnae.descricao) return 'Não informado';
+  // Filtrar CNAEs secundários com base na busca
+  const filteredCnaes = cnaesSecundarios?.filter(cnae => {
+    if (!searchTerm) return true;
+    const term = searchTerm.toLowerCase();
+    return (
+      cnae.codigo.toLowerCase().includes(term) ||
+      cnae.descricao.toLowerCase().includes(term)
+    );
+  }) || [];
 
-    const parts = [];
-    if (cnae.codigo) parts.push(cnae.codigo);
-    if (cnae.descricao) parts.push(cnae.descricao);
-
-    return parts.join(' - ');
-  };
-
-  const getPorteColor = (porte?: string) => {
-    if (!porte) return 'secondary';
-
-    const porteLower = porte.toLowerCase();
-    if (porteLower.includes('micro')) return 'default';
-    if (porteLower.includes('pequeno')) return 'secondary';
-    if (porteLower.includes('médio') || porteLower.includes('medio')) return 'outline';
-    if (porteLower.includes('grande')) return 'destructive';
-    return 'secondary';
-  };
+  // Mostrar apenas os primeiros 5 ou todos
+  const displayedCnaes = showAll ? filteredCnaes : filteredCnaes.slice(0, 5);
+  const hasMoreCnaes = filteredCnaes.length > 5;
 
   return (
     <Card>
@@ -54,64 +52,128 @@ export function CompanyCNAE({ company }: CompanyCNAEProps) {
           Atividades Econômicas (CNAE)
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6">
         {/* CNAE Principal */}
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <Target className="h-4 w-4 text-green-600" />
-            <span className="font-medium text-sm">Atividade Principal</span>
-            <Badge variant="default" className="text-xs">Principal</Badge>
-          </div>
-          <p className="text-sm text-muted-foreground ml-6">
-            {cnae_principal ? formatCNAE(cnae_principal) : 'Não informado'}
-          </p>
-        </div>
-
-        {/* CNAEs Secundários */}
-        {cnaes_secundarios && cnaes_secundarios.length > 0 && (
+        {cnaePrincipal && (
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <List className="h-4 w-4 text-blue-600" />
-              <span className="font-medium text-sm">Atividades Secundárias</span>
-              <Badge variant="secondary" className="text-xs">
-                {cnaes_secundarios.length} atividade{cnaes_secundarios.length > 1 ? 's' : ''}
+            <div className="flex items-center gap-2 mb-3">
+              <Target className="h-4 w-4 text-green-600 dark:text-green-400" />
+              <span className="font-semibold text-sm">Atividade Principal</span>
+              <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300">
+                Principal
               </Badge>
             </div>
-            <div className="space-y-2 ml-6">
-              {cnaes_secundarios.slice(0, 5).map((cnae, index) => (
-                <p key={index} className="text-sm text-muted-foreground">
-                  • {formatCNAE(cnae)}
-                </p>
-              ))}
-              {cnaes_secundarios.length > 5 && (
-                <p className="text-xs text-muted-foreground italic">
-                  ... e mais {cnaes_secundarios.length - 5} atividade{cnaes_secundarios.length - 5 > 1 ? 's' : ''}
-                </p>
+            <div className="ml-6 space-y-2">
+              <p className="text-sm font-mono text-muted-foreground">
+                {cnaePrincipal.codigo}
+              </p>
+              <p className="text-sm font-medium">
+                {cnaePrincipal.descricao}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* CNAEs Secundários */}
+        {cnaesSecundarios && cnaesSecundarios.length > 0 && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <List className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <span className="font-semibold text-sm">Atividades Secundárias</span>
+                <Badge variant="secondary">
+                  {cnaesSecundarios.length}
+                </Badge>
+              </div>
+
+              {/* Campo de busca */}
+              {cnaesSecundarios.length > 3 && (
+                <div className="relative flex-1 min-w-[200px] max-w-md">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Buscar por código ou descrição..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 h-9 text-sm"
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Lista de CNAEs */}
+            <div className="ml-6 space-y-3">
+              {displayedCnaes.length > 0 ? (
+                <>
+                  {displayedCnaes.map((cnae, index) => (
+                    <div key={index} className="space-y-1">
+                      <p className="text-sm font-mono text-muted-foreground">
+                        {cnae.codigo}
+                      </p>
+                      <p className="text-sm">
+                        {cnae.descricao}
+                      </p>
+                    </div>
+                  ))}
+
+                  {/* Botão Ver Mais/Menos */}
+                  {hasMoreCnaes && !searchTerm && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowAll(!showAll)}
+                      className="w-full mt-2"
+                    >
+                      {showAll ? (
+                        <>
+                          <ChevronUp className="h-4 w-4 mr-2" />
+                          Mostrar menos
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="h-4 w-4 mr-2" />
+                          Ver todas as {filteredCnaes.length} atividades
+                        </>
+                      )}
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <div className="text-center py-4">
+                  <p className="text-sm text-muted-foreground">
+                    Nenhuma atividade encontrada para &quot;{searchTerm}&quot;
+                  </p>
+                </div>
               )}
             </div>
           </div>
         )}
 
         {/* Informações Adicionais */}
-        <div className="pt-3 border-t space-y-3">
-          {natureza_juridica && (
+        <div className="pt-4 border-t space-y-4">
+          {/* Natureza Jurídica */}
+          {naturezaJuridica && (
             <div>
-              <span className="text-sm font-medium">Natureza Jurídica:</span>
-              <p className="text-sm text-muted-foreground">
-                {natureza_juridica.codigo && natureza_juridica.descricao
-                  ? `${natureza_juridica.codigo} - ${natureza_juridica.descricao}`
-                  : natureza_juridica.descricao || natureza_juridica.codigo || 'Não informado'
-                }
+              <label className="text-sm font-medium text-muted-foreground">
+                Natureza Jurídica
+              </label>
+              <p className="text-sm mt-1">
+                {naturezaJuridica.codigo && `${naturezaJuridica.codigo} - `}
+                {naturezaJuridica.descricao}
               </p>
             </div>
           )}
 
+          {/* Porte */}
           {porte && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Porte da Empresa:</span>
-              <Badge variant={getPorteColor(porte)}>
-                {porte}
-              </Badge>
+            <div>
+              <label className="text-sm font-medium text-muted-foreground">
+                Porte da Empresa
+              </label>
+              <div className="mt-1">
+                <Badge variant="outline" className="font-medium">
+                  {porte}
+                </Badge>
+              </div>
             </div>
           )}
         </div>

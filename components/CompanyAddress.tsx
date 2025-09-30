@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Building2, Globe } from 'lucide-react';
+import { MapPin, Building2, Globe, Phone, Mail } from 'lucide-react';
 
 interface CompanyAddressProps {
   company: {
@@ -17,6 +17,8 @@ interface CompanyAddressProps {
     };
     situacao_cadastral?: string;
     data_situacao_cadastral?: string;
+    email?: string;
+    telefones?: Array<{ ddd: string; numero: string; isFax?: boolean }>;
   };
 }
 
@@ -98,19 +100,22 @@ export function CompanyAddress({ company }: CompanyAddressProps) {
           </div>
         </div>
 
-        {company.situacao_cadastral && (
-          <div className="pt-3 border-t">
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-medium">Situação Cadastral:</span>
-              <Badge variant={getSituacaoColor(company.situacao_cadastral)}>
-                {company.situacao_cadastral}
-              </Badge>
-            </div>
-            {company.data_situacao_cadastral && (
-              <p className="text-xs text-muted-foreground mt-1 ml-6">
-                Desde: {new Date(company.data_situacao_cadastral).toLocaleDateString('pt-BR')}
-              </p>
+        {/* Contato */}
+        {(company.telefones?.length || company.email) && (
+          <div className="pt-4 border-t space-y-3">
+            {company.telefones && company.telefones.length > 0 && (
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-mono">
+                  ({company.telefones[0].ddd}) {company.telefones[0].numero}
+                </span>
+              </div>
+            )}
+            {company.email && (
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm break-all">{company.email}</span>
+              </div>
             )}
           </div>
         )}

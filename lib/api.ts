@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { getCNAEDescription } from './cnae-data';
 
 const BASE = (process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.opencnpj.org').replace(/\/$/, '');
 
@@ -34,6 +35,17 @@ async function fetcher<T>(path: string, init?: RequestInit): Promise<T> {
   return res.json();
 }
 
+// ===== Tipos CNAE =====
+export type CNAEItem = {
+  codigo: string;
+  descricao: string;
+};
+
+export type NaturezaJuridica = {
+  codigo: string;
+  descricao: string;
+};
+
 // ===== Tipos modelados a partir da documentação pública da API =====
 // GET https://api.opencnpj.org/{CNPJ}
 // Campos vêm em snake_case; mapeamos para camelCase no front
@@ -45,9 +57,9 @@ export type CompanyApi = {
   data_situacao_cadastral?: string;
   matriz_filial?: string;
   data_inicio_atividade?: string;
-  cnae_principal?: string;
-  cnaes_secundarios?: string[];
-  natureza_juridica?: string;
+  cnae_principal?: string | { codigo: string; descricao: string };
+  cnaes_secundarios?: (string | { codigo: string; descricao: string })[];
+  natureza_juridica?: string | { codigo: string; descricao: string };
   logradouro?: string;
   numero?: string;
   complemento?: string;
@@ -77,9 +89,9 @@ export type Company = {
   dataSituacao?: string;
   matrizOuFilial?: string;
   abertura?: string;
-  cnaePrincipal?: string;
-  cnaesSecundarios?: string[];
-  naturezaJuridica?: string;
+  cnaePrincipal?: CNAEItem;
+  cnaesSecundarios?: CNAEItem[];
+  naturezaJuridica?: NaturezaJuridica;
   endereco?: {
     logradouro?: string;
     numero?: string;
@@ -113,6 +125,42 @@ export type ApiInfo = {
   zip_md5checksum: string;
 };
 
+// Helper para parsear CNAE (pode vir como string "codigo - descricao" ou objeto)
+function parseCNAE(cnae: string | { codigo: string; descricao: string } | undefined): CNAEItem | undefined {
+  if (!cnae) return undefined;
+  
+  if (typeof cnae === 'object') {
+    return { codigo: cnae.codigo, descricao: cnae.descricao };
+  }
+  
+  // Se for string no formato "codigo - descricao"
+  const match = cnae.match(/^([\d-]+)\s*-\s*(.+)$/);
+  if (match) {
+    return { codigo: match[1].trim(), descricao: match[2].trim() };
+  }
+  
+  // Se for apenas código, busca a descrição no dicionário
+  const descricao = getCNAEDescription(cnae);
+  return { codigo: cnae, descricao };
+}
+
+// Helper para parsear Natureza Jurídica
+function parseNaturezaJuridica(nj: string | { codigo: string; descricao: string } | undefined): NaturezaJuridica | undefined {
+  if (!nj) return undefined;
+  
+  if (typeof nj === 'object') {
+    return { codigo: nj.codigo, descricao: nj.descricao };
+  }
+  
+  // Se for string no formato "codigo - descricao"
+  const match = nj.match(/^([\d-]+)\s*-\s*(.+)$/);
+  if (match) {
+    return { codigo: match[1].trim(), descricao: match[2].trim() };
+  }
+  
+  return { codigo: '', descricao: nj };
+}
+
 function mapCompany(api: CompanyApi): Company {
   return {
     cnpj: api.cnpj,
@@ -122,9 +170,9 @@ function mapCompany(api: CompanyApi): Company {
     dataSituacao: api.data_situacao_cadastral,
     matrizOuFilial: api.matriz_filial,
     abertura: api.data_inicio_atividade,
-    cnaePrincipal: api.cnae_principal,
-    cnaesSecundarios: api.cnaes_secundarios,
-    naturezaJuridica: api.natureza_juridica,
+    cnaePrincipal: parseCNAE(api.cnae_principal),
+    cnaesSecundarios: api.cnaes_secundarios?.map(parseCNAE).filter((c): c is CNAEItem => c !== undefined),
+    naturezaJuridica: parseNaturezaJuridica(api.natureza_juridica),
     endereco: {
       logradouro: api.logradouro,
       numero: api.numero,

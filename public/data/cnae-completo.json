@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "fonte": "API do IBGE - CNAE 2.3",
+    "dataGeracao": "2025-09-30",
+    "totalCNAEs": 1332,
+    "versao": "2.3",
+    "url": "https://servicodados.ibge.gov.br/api/v2/cnae/subclasses"
+  },
+  "observacao": "Este arquivo contém os dados brutos baixados da API do IBGE. Para usar no código TypeScript, importe de lib/cnae-completo.ts"
+}
