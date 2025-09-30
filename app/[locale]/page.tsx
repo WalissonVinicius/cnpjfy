@@ -38,16 +38,21 @@ export default function HomePage({ params }: HomePageProps) {
     setIsLoading(true);
 
     try {
+      // Pequeno delay para garantir que o modal apareça
+      await new Promise(resolve => setTimeout(resolve, 100));
+
       // Navigate to company page
       router.push(`/${params.locale}/empresa/${cleanCnpj}`);
+
+      // Não resetar isLoading aqui - deixar o modal visível durante a navegação
+      // O estado será resetado automaticamente quando a página mudar
     } catch (error) {
+      setIsLoading(false);
       toast({
         title: t('error', 'Erro'),
         description: t('searchError', 'Ocorreu um erro ao buscar a empresa. Tente novamente.'),
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -55,6 +60,13 @@ export default function HomePage({ params }: HomePageProps) {
     const value = e.target.value;
     setCnpjInput(cnpjMask(value));
   };
+
+  // Resetar loading ao desmontar o componente
+  useEffect(() => {
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
 
   // Implementar atalho Ctrl+K para busca rápida
   useEffect(() => {
