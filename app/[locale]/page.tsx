@@ -105,6 +105,45 @@ export default function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-8 overflow-hidden">
+      {/* Loading Overlay Modal */}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 animate-in zoom-in-95 duration-300">
+            <div className="flex flex-col items-center space-y-6">
+              {/* Animated Logo/Icon */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-accent-500 rounded-full blur-2xl opacity-40 animate-pulse"></div>
+                <div className="relative bg-gradient-to-br from-brand-500 to-accent-500 rounded-full p-6 shadow-lg">
+                  <Search className="h-12 w-12 text-white animate-pulse" />
+                </div>
+              </div>
+
+              {/* Loading Spinner */}
+              <div className="relative w-16 h-16">
+                <div className="absolute inset-0 border-4 border-brand-200 dark:border-brand-800 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-transparent border-t-brand-600 rounded-full animate-spin"></div>
+                <div className="absolute inset-2 border-4 border-transparent border-t-accent-500 rounded-full animate-spin animation-delay-150" style={{ animationDuration: '1s' }}></div>
+              </div>
+
+              {/* Loading Text */}
+              <div className="text-center space-y-2">
+                <h3 className="text-xl font-bold text-foreground">
+                  {t('loading', 'Buscando empresa...')}
+                </h3>
+                <p className="text-sm text-muted-foreground animate-pulse">
+                  Aguarde enquanto consultamos os dados
+                </p>
+              </div>
+
+              {/* Progress Animation */}
+              <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2 overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-brand-500 to-accent-500 rounded-full animate-loading-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-brand-500/20 to-accent-500/20 rounded-full blur-3xl"></div>
@@ -123,7 +162,7 @@ export default function HomePage({ params }: HomePageProps) {
           </span>
         </h1>
 
-        <p className="text-2xl text-muted-foreground font-semibold bg-gradient-to-r from-gray-700 to-gray-500 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
+        <p className="text-2xl font-semibold bg-gradient-to-r from-gray-700 to-gray-500 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
           {t('subtitle')}
         </p>
 
@@ -152,13 +191,16 @@ export default function HomePage({ params }: HomePageProps) {
           </div>
           <Button
             type="submit"
-            className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:transform-none"
+            className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             disabled={isLoading || !cnpjInput.trim()}
           >
             {isLoading ? (
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                {t('loading', 'Buscando...')}
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="absolute inset-0 w-5 h-5 border-3 border-transparent border-t-white/50 rounded-full animate-spin animation-delay-150"></div>
+                </div>
+                <span className="animate-pulse">{t('loading', 'Buscando empresa...')}</span>
               </div>
             ) : (
               <div className="flex items-center gap-2">

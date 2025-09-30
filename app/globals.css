@@ -71,3 +71,22 @@
 .dark .leaflet-tile {
   filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
 }
+
+/* Loading animations */
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-loading-bar {
+  animation: loading-bar 1.5s ease-in-out infinite;
+}
+
+/* Animation delay utility */
+.animation-delay-150 {
+  animation-delay: 150ms;
+}
