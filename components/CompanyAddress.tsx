@@ -78,6 +78,23 @@ export function CompanyAddress({ company }: CompanyAddressProps) {
     return 'secondary';
   };
 
+  // Gera a URL do Google Maps com o endereço completo
+  const getGoogleMapsEmbedUrl = () => {
+    const addressParts = [];
+
+    if (endereco.logradouro) addressParts.push(endereco.logradouro);
+    if (endereco.numero) addressParts.push(endereco.numero);
+    if (endereco.bairro) addressParts.push(endereco.bairro);
+    if (endereco.municipio) addressParts.push(endereco.municipio);
+    if (endereco.uf) addressParts.push(endereco.uf);
+    if (endereco.cep) addressParts.push(endereco.cep);
+
+    const fullAddress = addressParts.join(', ');
+    const encodedAddress = encodeURIComponent(fullAddress);
+
+    return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodedAddress}&zoom=16`;
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -87,6 +104,7 @@ export function CompanyAddress({ company }: CompanyAddressProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Informações do Endereço */}
         <div className="grid gap-3">
           <div className="flex items-start gap-2">
             <Building2 className="h-4 w-4 mt-1 text-muted-foreground" />
@@ -98,6 +116,21 @@ export function CompanyAddress({ company }: CompanyAddressProps) {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Google Maps Embed */}
+        <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
+          <iframe
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            style={{ border: 0 }}
+            referrerPolicy="no-referrer-when-downgrade"
+            src={getGoogleMapsEmbedUrl()}
+            allowFullScreen
+            loading="lazy"
+            title="Localização da empresa no Google Maps"
+          />
         </div>
 
         {/* Contato */}
