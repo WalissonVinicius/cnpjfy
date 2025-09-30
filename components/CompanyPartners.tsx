@@ -88,52 +88,54 @@ export function CompanyPartners({ company }: CompanyPartnersProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Users className="h-5 w-5" />
-          Sócios e Administradores
-          <Badge variant="secondary" className="ml-auto">
+        <CardTitle className="flex flex-col sm:flex-row sm:items-center gap-2 text-base sm:text-lg md:text-xl">
+          <div className="flex items-center gap-2">
+            <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span>Sócios e Administradores</span>
+          </div>
+          <Badge variant="secondary" className="sm:ml-auto text-xs sm:text-sm w-fit">
             {partners.length} {partners.length === 1 ? 'sócio' : 'sócios'}
           </Badge>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="border rounded-lg p-4 hover:bg-muted/50 transition-colors"
+              className="border rounded-lg p-3 sm:p-4 hover:bg-muted/50 transition-colors"
             >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-full bg-primary/10">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
+                <div className="flex items-start gap-2 sm:gap-3 flex-1 min-w-0">
+                  <div className="p-1.5 sm:p-2 rounded-full bg-primary/10 flex-shrink-0">
                     {getPartnerType(partner.cpfCnpj) === 'Pessoa Física' ? (
-                      <User className="h-4 w-4 text-primary" />
+                      <User className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
                     ) : (
-                      <Building2 className="h-4 w-4 text-primary" />
+                      <Building2 className="h-3 w-3 sm:h-4 sm:w-4 text-primary" />
                     )}
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-lg">{partner.nome}</h4>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-semibold text-sm sm:text-base md:text-lg break-words">{partner.nome}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground break-words">
                       {getPartnerType(partner.cpfCnpj)} • {formatDocument(partner.cpfCnpj)}
                     </p>
                   </div>
                 </div>
 
                 {partner.percentualCapital && (
-                  <div className="text-right">
-                    <div className="flex items-center gap-1 text-sm font-medium">
+                  <div className="text-left sm:text-right flex-shrink-0">
+                    <div className="flex items-center gap-1 text-xs sm:text-sm font-medium">
                       <Percent className="h-3 w-3" />
                       {partner.percentualCapital}%
                     </div>
-                    <p className="text-xs text-muted-foreground">do capital</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">do capital</p>
                   </div>
                 )}
               </div>
 
-              <div className="grid gap-3 md:grid-cols-2">
+              <div className="grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-2">
                 <div>
-                  <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                  <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                     Qualificação
                   </label>
                   <div className="mt-1">

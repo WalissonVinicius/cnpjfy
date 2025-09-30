@@ -47,36 +47,36 @@ export function CompanyBasicInfo({ company }: CompanyBasicInfoProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Building2 className="h-5 w-5" />
-          Informações Básicas
+        <CardTitle className="flex items-center gap-2 text-base sm:text-lg md:text-xl">
+          <Building2 className="h-4 w-4 sm:h-5 sm:w-5" />
+          <span>Informações Básicas</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
           {/* Coluna 1 */}
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <div>
-              <label className="text-sm font-medium text-muted-foreground">
+              <label className="text-xs sm:text-sm font-medium text-muted-foreground">
                 Razão Social
               </label>
-              <p className="font-medium">{company.razaoSocial}</p>
+              <p className="font-medium text-sm sm:text-base break-words">{company.razaoSocial}</p>
             </div>
 
             {company.nomeFantasia && (
               <div>
-                <label className="text-sm font-medium text-muted-foreground">
+                <label className="text-xs sm:text-sm font-medium text-muted-foreground">
                   Nome Fantasia
                 </label>
-                <p className="font-medium">{company.nomeFantasia}</p>
+                <p className="font-medium text-sm sm:text-base break-words">{company.nomeFantasia}</p>
               </div>
             )}
 
             <div>
-              <label className="text-sm font-medium text-muted-foreground">
+              <label className="text-xs sm:text-sm font-medium text-muted-foreground">
                 CNPJ
               </label>
-              <p className="font-mono">{formatCNPJ(company.cnpj)}</p>
+              <p className="font-mono text-sm sm:text-base">{formatCNPJ(company.cnpj)}</p>
             </div>
           </div>
 

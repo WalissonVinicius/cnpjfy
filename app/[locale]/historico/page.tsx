@@ -218,34 +218,34 @@ export default function HistoryPage({ params }: HistoryPageProps) {
         ) : (
           <div className="space-y-4 sm:space-y-6">
             {filteredHistory.map((item, index) => (
-              <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+              <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 md:hover:scale-[1.02]">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <CardContent className="p-6 relative z-10">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-6 flex-1">
-                      <div className="p-3 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                        <Building2 className="h-6 w-6 text-white" />
+                <CardContent className="p-4 sm:p-6 relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div className="flex items-start sm:items-center gap-3 sm:gap-6 flex-1">
+                      <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 flex-shrink-0">
+                        <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-xl truncate group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">
+                        <h3 className="font-bold text-base sm:text-lg md:text-xl line-clamp-2 sm:truncate group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">
                           {item.razaoSocial}
                         </h3>
-                        <p className="text-sm text-muted-foreground font-mono mt-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground font-mono mt-1">
                           CNPJ: {formatCNPJ(item.cnpj)}
                         </p>
-                        <div className="flex items-center gap-2 mt-3">
-                          <Calendar className="h-4 w-4 text-brand-500" />
-                          <span className="text-sm text-muted-foreground font-medium">
+                        <div className="flex items-center gap-2 mt-2 sm:mt-3">
+                          <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-brand-500" />
+                          <span className="text-xs sm:text-sm text-muted-foreground font-medium">
                             {formatDate(new Date(item.timestamp).toISOString())}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between md:justify-end gap-3 md:gap-4">
                       {item.status && (
-                        <Badge className={`${getStatusColor(item.status)} px-3 py-1 font-semibold`}>
+                        <Badge className={`${getStatusColor(item.status)} px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold`}>
                           {item.status}
                         </Badge>
                       )}
@@ -253,10 +253,11 @@ export default function HistoryPage({ params }: HistoryPageProps) {
                       <Button
                         asChild
                         size="sm"
-                        className="h-10 px-4 bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-md hover:shadow-lg hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
+                        className="h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 text-white dark:from-brand-500 dark:via-purple-500 dark:to-accent-400 shadow-md hover:shadow-lg hover:brightness-110 rounded-xl font-semibold transition-all duration-300 hover:scale-105 focus-visible:ring-offset-2"
                       >
                         <Link href={`/${params.locale}/empresa/${item.cnpj}`}>
-                          {t('viewDetails', 'Ver Detalhes')}
+                          <span className="hidden sm:inline">{t('viewDetails', 'Ver Detalhes')}</span>
+                          <span className="sm:hidden">Ver</span>
                         </Link>
                       </Button>
                     </div>

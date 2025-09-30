@@ -121,25 +121,25 @@ export default function AboutPage({ params }: AboutPageProps) {
   ]
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-8">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* Hero Section */}
-        <div className="text-center space-y-6">
-          <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
+        <div className="text-center space-y-4 sm:space-y-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent px-4">
             {t('title', 'Sobre o CNPJfy')}
           </h1>
-          <p className="text-2xl text-muted-foreground max-w-3xl mx-auto font-medium">
+          <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium px-4">
             {t('subtitle', 'Uma plataforma gratuita e open source para consulta de dados empresariais brasileiros')}
           </p>
-          <div className="flex justify-center gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 px-4">
             <Button
               asChild
-              className="bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="w-full sm:w-auto bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
-                <Github className="h-5 w-5 mr-2" />
-                {t('viewOnGithub', 'Ver no GitHub')}
-                <ExternalLink className="h-5 w-5 ml-2" />
+                <Github className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                <span className="text-sm sm:text-base">{t('viewOnGithub', 'Ver no GitHub')}</span>
+                <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5 ml-2" />
               </Link>
             </Button>
 
@@ -148,19 +148,19 @@ export default function AboutPage({ params }: AboutPageProps) {
 
         {/* Mission */}
         <Card className="bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm border-0 shadow-lg">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="flex items-center justify-center gap-3 text-2xl">
-              <div className="p-3 rounded-2xl bg-gradient-to-br from-red-500 to-pink-500">
-                <Heart className="h-6 w-6 text-white" />
+          <CardHeader className="text-center pb-3 sm:pb-4">
+            <CardTitle className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-xl sm:text-2xl">
+              <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br from-red-500 to-pink-500">
+                <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
               </div>
               {t('mission.title', 'Nossa Missão')}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6 text-center">
-            <p className="text-lg leading-relaxed">
+          <CardContent className="space-y-4 sm:space-y-6 text-center px-4 sm:px-6">
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed">
               {t('mission.description1', 'Democratizar o acesso às informações empresariais brasileiras, fornecendo uma plataforma gratuita, rápida e confiável para consulta de dados de CNPJ.')}
             </p>
-            <p className="text-lg leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed">
               {t('mission.description2', 'Acreditamos que informações públicas devem ser acessíveis a todos, sem barreiras financeiras ou técnicas. Por isso, mantemos o CNPJfy como um projeto 100% gratuito e open source.')}
             </p>
           </CardContent>
@@ -168,19 +168,19 @@ export default function AboutPage({ params }: AboutPageProps) {
 
         {/* Features */}
         <div>
-          <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent px-4">
             {t('features.title', 'Principais Recursos')}
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
-              <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-105">
+              <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 md:hover:scale-105">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <CardContent className="p-6 text-center relative z-10">
-                  <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 mb-4">
+                <CardContent className="p-4 sm:p-6 text-center relative z-10">
+                  <div className="mx-auto w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 mb-3 sm:mb-4">
                     {feature.icon}
                   </div>
-                  <h3 className="font-bold text-xl mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <h3 className="font-bold text-base sm:text-lg md:text-xl mb-2 sm:mb-3 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -192,21 +192,21 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Technologies */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Code className="h-6 w-6" />
-              {t('technologies.title', 'Tecnologias Utilizadas')}
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+              <Code className="h-5 w-5 sm:h-6 sm:w-6" />
+              <span>{t('technologies.title', 'Tecnologias Utilizadas')}</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {technologies.map((tech, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 rounded-lg border">
-                  <div className="p-2 rounded bg-primary/10">
+                <div key={index} className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg border">
+                  <div className="p-1.5 sm:p-2 rounded bg-primary/10 flex-shrink-0">
                     {tech.icon}
                   </div>
-                  <div>
-                    <h4 className="font-medium">{tech.name}</h4>
-                    <p className="text-sm text-muted-foreground">{tech.description}</p>
+                  <div className="min-w-0">
+                    <h4 className="font-medium text-sm sm:text-base truncate">{tech.name}</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground truncate">{tech.description}</p>
                   </div>
                 </div>
               ))}
@@ -217,20 +217,20 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Data Source */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Database className="h-6 w-6" />
-              {t('dataSource.title', 'Fonte dos Dados')}
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+              <Database className="h-5 w-5 sm:h-6 sm:w-6" />
+              <span>{t('dataSource.title', 'Fonte dos Dados')}</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <p>
+          <CardContent className="space-y-3 sm:space-y-4">
+            <p className="text-sm sm:text-base">
               {t('dataSource.description', 'Todos os dados são obtidos diretamente dos arquivos públicos disponibilizados pela Receita Federal do Brasil, garantindo autenticidade e atualização constante das informações.')}
             </p>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">{t('dataSource.badges.receita', 'Receita Federal')}</Badge>
-              <Badge variant="secondary">{t('dataSource.badges.public', 'Dados Públicos')}</Badge>
-              <Badge variant="secondary">{t('dataSource.badges.monthly', 'Atualizações Mensais')}</Badge>
-              <Badge variant="secondary">{t('dataSource.badges.official', '100% Oficial')}</Badge>
+              <Badge variant="secondary" className="text-xs sm:text-sm">{t('dataSource.badges.receita', 'Receita Federal')}</Badge>
+              <Badge variant="secondary" className="text-xs sm:text-sm">{t('dataSource.badges.public', 'Dados Públicos')}</Badge>
+              <Badge variant="secondary" className="text-xs sm:text-sm">{t('dataSource.badges.monthly', 'Atualizações Mensais')}</Badge>
+              <Badge variant="secondary" className="text-xs sm:text-sm">{t('dataSource.badges.official', '100% Oficial')}</Badge>
             </div>
           </CardContent>
         </Card>
@@ -238,19 +238,20 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Contributors */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              {t('contributors.title', 'Contribuidores')}
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+              <Users className="h-5 w-5 sm:h-6 sm:w-6" />
+              <span>{t('contributors.title', 'Contribuidores')}</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
               {contributors.map((contributor, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-4 p-4 rounded-lg border"
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg border"
                 >
                   {/* Avatar */}
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden flex-shrink-0">
                     <Image
                       src={contributor.image}
                       alt={contributor.name}
@@ -261,18 +262,18 @@ export default function AboutPage({ params }: AboutPageProps) {
                   </div>
 
                   {/* Informações */}
-                  <div className="flex-1">
-                    <h4 className="font-semibold">{contributor.name}</h4>
-                    <p className="text-sm text-primary">{contributor.role}</p>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-sm sm:text-base truncate">{contributor.name}</h4>
+                    <p className="text-xs sm:text-sm text-primary truncate">{contributor.role}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                       {contributor.description}
                     </p>
                   </div>
 
                   {/* GitHub */}
-                  <Button variant="outline" size="sm" asChild>
+                  <Button variant="outline" size="sm" asChild className="flex-shrink-0">
                     <Link href={contributor.github} target="_blank">
-                      <Github className="h-4 w-4" />
+                      <Github className="h-3 w-3 sm:h-4 sm:w-4" />
                     </Link>
                   </Button>
                 </div>
@@ -284,25 +285,25 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Statistics */}
         <Card>
           <CardHeader>
-            <CardTitle>{t('statistics.title', 'Estatísticas do Projeto')}</CardTitle>
+            <CardTitle className="text-lg sm:text-xl md:text-2xl">{t('statistics.title', 'Estatísticas do Projeto')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 md:grid-cols-4 text-center">
+            <div className="grid gap-3 sm:gap-4 grid-cols-2 md:grid-cols-4 text-center">
               <div>
-                <div className="text-3xl font-bold text-primary">50M+</div>
-                <div className="text-sm text-muted-foreground">{t('statistics.companies', 'Empresas no Banco')}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-primary">50M+</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{t('statistics.companies', 'Empresas no Banco')}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-green-600">100%</div>
-                <div className="text-sm text-muted-foreground">{t('statistics.free', 'Gratuito')}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-green-600">100%</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{t('statistics.free', 'Gratuito')}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600">24/7</div>
-                <div className="text-sm text-muted-foreground">{t('statistics.availability', 'Disponibilidade')}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-blue-600">24/7</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{t('statistics.availability', 'Disponibilidade')}</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-purple-600">Open</div>
-                <div className="text-sm text-muted-foreground">{t('statistics.source', 'Source')}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-purple-600">Open</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{t('statistics.source', 'Source')}</div>
               </div>
             </div>
           </CardContent>
@@ -311,19 +312,19 @@ export default function AboutPage({ params }: AboutPageProps) {
         {/* Support */}
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Star className="h-6 w-6" />
-              {t('support.title', 'Apoie o Projeto')}
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+              <Star className="h-5 w-5 sm:h-6 sm:w-6" />
+              <span>{t('support.title', 'Apoie o Projeto')}</span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <p>
+          <CardContent className="space-y-3 sm:space-y-4">
+            <p className="text-sm sm:text-base">
               {t('support.description', 'O CNPJfy é mantido por voluntários e depende da comunidade para continuar funcionando. Você pode ajudar de várias formas:')}
             </p>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
               <div className="space-y-2">
-                <h4 className="font-semibold">{t('support.developers.title', 'Para Desenvolvedores')}</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <h4 className="font-semibold text-sm sm:text-base">{t('support.developers.title', 'Para Desenvolvedores')}</h4>
+                <ul className="text-xs sm:text-sm text-muted-foreground space-y-1">
                   <li>• {t('support.developers.contribute', 'Contribua com código no GitHub')}</li>
                   <li>• {t('support.developers.report', 'Reporte bugs e sugestões')}</li>
                   <li>• {t('support.developers.docs', 'Melhore a documentação')}</li>
@@ -331,8 +332,8 @@ export default function AboutPage({ params }: AboutPageProps) {
                 </ul>
               </div>
               <div className="space-y-2">
-                <h4 className="font-semibold">{t('support.users.title', 'Para Usuários')}</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
+                <h4 className="font-semibold text-sm sm:text-base">{t('support.users.title', 'Para Usuários')}</h4>
+                <ul className="text-xs sm:text-sm text-muted-foreground space-y-1">
                   <li>• {t('support.users.star', 'Dê uma estrela no GitHub')}</li>
                   <li>• {t('support.users.share', 'Compartilhe com outros')}</li>
                   <li>• {t('support.users.report', 'Reporte problemas')}</li>
@@ -340,26 +341,27 @@ export default function AboutPage({ params }: AboutPageProps) {
                 </ul>
               </div>
             </div>
-            <div className="flex gap-4 pt-4">
-              <Button asChild>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
+              <Button asChild className="w-full sm:w-auto">
                 <Link href="https://github.com/WalissonVinicius/cnpjfy" target="_blank">
-                  <Star className="h-4 w-4 mr-2" />
-                  {t('support.starButton', 'Dar Estrela no GitHub')}
+                  <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                  <span className="text-xs sm:text-sm">{t('support.starButton', 'Dar Estrela no GitHub')}</span>
                 </Link>
               </Button>
               <Button
                 variant="outline"
                 onClick={handleCopyEmail}
+                className="w-full sm:w-auto"
               >
                 {isEmailCopied ? (
                   <>
-                    <Check className="h-4 w-4 mr-2 text-green-500" />
-                    {t('support.emailCopied', 'Copiado para área de transferência')}
+                    <Check className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-green-500" />
+                    <span className="text-xs sm:text-sm truncate">{t('support.emailCopied', 'Copiado!')}</span>
                   </>
                 ) : (
                   <>
-                    <Mail className="h-4 w-4 mr-2" />
-                    {t('support.contactButton', 'Entrar em Contato')}
+                    <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                    <span className="text-xs sm:text-sm">{t('support.contactButton', 'Entrar em Contato')}</span>
                   </>
                 )}
               </Button>
@@ -369,8 +371,8 @@ export default function AboutPage({ params }: AboutPageProps) {
 
         {/* License */}
         <Card>
-          <CardContent className="p-6 text-center">
-            <p className="text-sm text-muted-foreground">
+          <CardContent className="p-4 sm:p-6 text-center">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {t('license.text', 'Este projeto é licenciado sob a')}{' '}
               <Link
                 href="https://github.com/WalissonVinicius/cnpjfy/blob/main/LICENSE"

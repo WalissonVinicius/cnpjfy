@@ -283,28 +283,28 @@ export default function ComparePage({ params }: ComparePageProps) {
                   <X className="h-4 w-4" />
                 </Button>
 
-                <CardHeader className="pb-4 relative z-10">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500">
-                        <Building2 className="h-5 w-5 text-white" />
+                <CardHeader className="pb-3 sm:pb-4 relative z-10 pr-12">
+                  <div className="space-y-2 sm:space-y-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-br from-brand-500 to-accent-500">
+                        <Building2 className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                       </div>
-                      <Badge className={`${getStatusColor(company.situacao || '')} px-3 py-1 font-semibold`}>
+                      <Badge className={`${getStatusColor(company.situacao || '')} px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm font-semibold`}>
                         {company.situacao || 'N/A'}
                       </Badge>
                     </div>
-                    <h3 className="font-bold text-lg leading-tight group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">
+                    <h3 className="font-bold text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">
                       {company.razaoSocial}
                     </h3>
                     {company.nomeFantasia && (
-                      <p className="text-sm text-muted-foreground font-medium">
+                      <p className="text-xs sm:text-sm text-muted-foreground font-medium line-clamp-1">
                         {company.nomeFantasia}
                       </p>
                     )}
                   </div>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 sm:space-y-4">
                   <div>
                     <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       CNPJ
@@ -313,61 +313,61 @@ export default function ComparePage({ params }: ComparePageProps) {
                   </div>
 
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                    <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t('labels.mainActivity', 'Atividade Principal')}
                     </label>
-                    <p className="text-sm">
+                    <p className="text-xs sm:text-sm line-clamp-2">
                       {company.cnaePrincipal?.descricao || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                    <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t('labels.location', 'Localização')}
                     </label>
-                    <p className="text-sm flex items-center gap-1">
-                      <MapPin className="h-3 w-3" />
-                      {company.endereco?.municipio}, {company.endereco?.uf}
+                    <p className="text-xs sm:text-sm flex items-center gap-1">
+                      <MapPin className="h-3 w-3 flex-shrink-0" />
+                      <span className="truncate">{company.endereco?.municipio}, {company.endereco?.uf}</span>
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                    <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t('labels.openingDate', 'Data de Abertura')}
                     </label>
-                    <p className="text-sm flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      {formatDate(company.abertura)}
+                    <p className="text-xs sm:text-sm flex items-center gap-1">
+                      <Calendar className="h-3 w-3 flex-shrink-0" />
+                      <span>{formatDate(company.abertura)}</span>
                     </p>
                   </div>
 
                   {company.capitalSocial && (
                     <div>
-                      <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                         {t('labels.socialCapital', 'Capital Social')}
                       </label>
-                      <p className="text-sm flex items-center gap-1 font-medium">
-                        <DollarSign className="h-3 w-3" />
-                        {formatCurrency(company.capitalSocial)}
+                      <p className="text-xs sm:text-sm flex items-center gap-1 font-medium">
+                        <DollarSign className="h-3 w-3 flex-shrink-0" />
+                        <span className="truncate">{formatCurrency(company.capitalSocial)}</span>
                       </p>
                     </div>
                   )}
 
                   <div>
-                    <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                    <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                       {t('labels.legalNature', 'Natureza Jurídica')}
                     </label>
-                    <p className="text-sm">
+                    <p className="text-xs sm:text-sm line-clamp-2">
                       {company.naturezaJuridica?.descricao || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
                   {company.porte && (
                     <div>
-                      <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                      <label className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                         {t('labels.size', 'Porte')}
                       </label>
-                      <p className="text-sm">{company.porte}</p>
+                      <p className="text-xs sm:text-sm">{company.porte}</p>
                     </div>
                   )}
                 </CardContent>
@@ -379,42 +379,42 @@ export default function ComparePage({ params }: ComparePageProps) {
         {/* Comparison Summary */}
         {companies.length > 1 && (
           <Card className="bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm border-0 shadow-lg">
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="flex items-center justify-center gap-3 text-2xl">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-brand-500 to-accent-500">
-                  <FileText className="h-6 w-6 text-white" />
+            <CardHeader className="text-center pb-4 sm:pb-6">
+              <CardTitle className="flex items-center justify-center gap-2 sm:gap-3 text-lg sm:text-xl md:text-2xl">
+                <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-gradient-to-br from-brand-500 to-accent-500">
+                  <FileText className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-white" />
                 </div>
-                {t('comparisonSummary', 'Resumo da Comparação')}
+                <span className="line-clamp-1">{t('comparisonSummary', 'Resumo da Comparação')}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/50 dark:to-green-900/50 border-2 border-green-200 dark:border-green-800 hover:shadow-lg transition-all duration-300">
-                  <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-3">
+              <div className="grid gap-3 sm:gap-4 md:gap-6 grid-cols-2 md:grid-cols-4">
+                <div className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/50 dark:to-green-900/50 border-2 border-green-200 dark:border-green-800 hover:shadow-lg transition-all duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 mb-1 sm:mb-2 md:mb-3">
                     {companies.filter(c => c.situacao?.toLowerCase() === 'ativa').length}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.activeCompanies', 'Empresas Ativas')}</div>
+                  <div className="text-[10px] sm:text-xs md:text-sm font-semibold text-muted-foreground">{t('summary.activeCompanies', 'Empresas Ativas')}</div>
                 </div>
 
-                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-950/50 dark:to-brand-900/50 border-2 border-brand-200 dark:border-brand-800 hover:shadow-lg transition-all duration-300">
-                  <div className="text-4xl font-bold text-brand-600 dark:text-brand-400 mb-3">
+                <div className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 dark:from-brand-950/50 dark:to-brand-900/50 border-2 border-brand-200 dark:border-brand-800 hover:shadow-lg transition-all duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-600 dark:text-brand-400 mb-1 sm:mb-2 md:mb-3">
                     {new Set(companies.map(c => c.endereco?.uf).filter(Boolean)).size}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.differentStates', 'Estados Diferentes')}</div>
+                  <div className="text-[10px] sm:text-xs md:text-sm font-semibold text-muted-foreground">{t('summary.differentStates', 'Estados Diferentes')}</div>
                 </div>
 
-                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-2 border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300">
-                  <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">
+                <div className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-2 border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-1 sm:mb-2 md:mb-3">
                     {new Set(companies.map(c => c.cnaePrincipal?.codigo || '')).size}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.differentCnaes', 'CNAEs Diferentes')}</div>
+                  <div className="text-[10px] sm:text-xs md:text-sm font-semibold text-muted-foreground">{t('summary.differentCnaes', 'CNAEs Diferentes')}</div>
                 </div>
 
-                <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/50 dark:to-purple-900/50 border-2 border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-300">
-                  <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-3">
+                <div className="text-center p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/50 dark:to-purple-900/50 border-2 border-purple-200 dark:border-purple-800 hover:shadow-lg transition-all duration-300">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-1 sm:mb-2 md:mb-3">
                     {companies.filter(c => c.capitalSocial && parseFloat(c.capitalSocial) > 0).length}
                   </div>
-                  <div className="text-sm font-semibold text-muted-foreground">{t('summary.withCapital', 'Com Capital Informado')}</div>
+                  <div className="text-[10px] sm:text-xs md:text-sm font-semibold text-muted-foreground">{t('summary.withCapital', 'Com Capital Informado')}</div>
                 </div>
               </div>
             </CardContent>
