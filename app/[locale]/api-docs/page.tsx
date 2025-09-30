@@ -850,12 +850,6 @@ public class OpenCNPJClient {
                   {t('documentation', 'Documentação')}
                 </a>
               </Button>
-              <Button variant="outline" className="bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800">
-                <a href="https://discord.gg/opencnpj" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                  <MessageCircle className="h-4 w-4 mr-2" />
-                  {t('community', 'Comunidade')}
-                </a>
-              </Button>
             </div>
           </section>
         </div>
