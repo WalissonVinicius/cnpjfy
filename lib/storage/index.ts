@@ -231,7 +231,10 @@ export interface ComparisonCompany {
   dataAbertura: string;
   capitalSocial: number;
   porte: string;
-  naturezaJuridica: string;
+  naturezaJuridica: {
+    codigo: string;
+    descricao: string;
+  };
   atividadePrincipal: {
     codigo: string;
     descricao: string;
