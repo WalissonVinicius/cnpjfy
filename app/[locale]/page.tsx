@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, Building2, TrendingUp, Clock, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -55,6 +55,30 @@ export default function HomePage({ params }: HomePageProps) {
     const value = e.target.value;
     setCnpjInput(cnpjMask(value));
   };
+
+  // Implementar atalho Ctrl+K para busca rápida
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Verificar se Ctrl+K foi pressionado
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        // Focar no campo de busca
+        const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
+    };
+
+    // Adicionar listener de teclado
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const features = [
     {
