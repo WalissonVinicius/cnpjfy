@@ -50,23 +50,25 @@ export default function ComparePage({ params }: ComparePageProps) {
         razaoSocial: saved.razaoSocial,
         nomeFantasia: saved.nomeFantasia,
         situacao: saved.situacao,
-        dataAbertura: saved.dataAbertura,
+        abertura: saved.dataAbertura,
         capitalSocial: saved.capitalSocial.toString(),
         porte: saved.porte,
         naturezaJuridica: saved.naturezaJuridica,
         cnaePrincipal: saved.atividadePrincipal,
         cnaesSecundarios: [],
-        logradouro: saved.endereco.logradouro,
-        numero: saved.endereco.numero,
-        complemento: saved.endereco.complemento,
-        bairro: saved.endereco.bairro,
-        municipio: saved.endereco.municipio,
-        uf: saved.endereco.uf,
-        cep: saved.endereco.cep,
+        endereco: {
+          logradouro: saved.endereco.logradouro,
+          numero: saved.endereco.numero,
+          complemento: saved.endereco.complemento,
+          bairro: saved.endereco.bairro,
+          municipio: saved.endereco.municipio,
+          uf: saved.endereco.uf,
+          cep: saved.endereco.cep,
+        },
         telefones: saved.telefone ? [{ ddd: '', numero: saved.telefone }] : undefined,
         email: saved.email,
         // Add default values for missing properties
-        qsa: [],
+        socios: [],
         situacaoEspecial: undefined,
         dataSituacaoEspecial: undefined,
       }))
@@ -123,8 +125,8 @@ export default function ComparePage({ params }: ComparePageProps) {
         razaoSocial: company.razaoSocial,
         nomeFantasia: company.nomeFantasia,
         situacao: company.situacao,
-        dataAbertura: company.dataAbertura,
-        capitalSocial: parseFloat(company.capitalSocial) || 0,
+        dataAbertura: company.abertura || '',
+        capitalSocial: parseFloat(company.capitalSocial || '0') || 0,
         porte: company.porte || 'Não informado',
         naturezaJuridica: company.naturezaJuridica || { codigo: '', descricao: 'Não informado' },
         atividadePrincipal: company.cnaePrincipal || { codigo: '', descricao: 'Não informado' },
@@ -304,7 +306,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                       {t('labels.mainActivity', 'Atividade Principal')}
                     </label>
                     <p className="text-sm">
-                      {company.cnaePrincipal || t('notInformed', 'Não informado')}
+                      {company.cnaePrincipal?.descricao || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
@@ -345,7 +347,7 @@ export default function ComparePage({ params }: ComparePageProps) {
                       {t('labels.legalNature', 'Natureza Jurídica')}
                     </label>
                     <p className="text-sm">
-                      {company.naturezaJuridica || t('notInformed', 'Não informado')}
+                      {company.naturezaJuridica?.descricao || t('notInformed', 'Não informado')}
                     </p>
                   </div>
 
@@ -392,7 +394,7 @@ export default function ComparePage({ params }: ComparePageProps) {
 
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/50 dark:to-blue-900/50 border-2 border-blue-200 dark:border-blue-800 hover:shadow-lg transition-all duration-300">
                   <div className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-3">
-                    {new Set(companies.map(c => c.cnaePrincipal)).size}
+                    {new Set(companies.map(c => c.cnaePrincipal?.codigo || '')).size}
                   </div>
                   <div className="text-sm font-semibold text-muted-foreground">{t('summary.differentCnaes', 'CNAEs Diferentes')}</div>
                 </div>
