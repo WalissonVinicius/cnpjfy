@@ -134,14 +134,14 @@ export default function HistoryPage({ params }: HistoryPageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-8">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent px-2">
             {t('title', 'Histórico de Pesquisas')}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             {t('description', 'Visualize e gerencie suas consultas anteriores com dados organizados e estatísticas detalhadas')}
           </p>
 
@@ -149,7 +149,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
             <div className="flex justify-center">
               <Button
                 onClick={handleClearHistory}
-                className="h-12 px-6 bg-red-50 dark:bg-red-950/50 border-2 border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950/70 hover:border-red-300 dark:hover:border-red-700 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                className="h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base bg-red-50 dark:bg-red-950/50 border-2 border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-950/70 hover:border-red-300 dark:hover:border-red-700 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 {t('clearHistory', 'Limpar Histórico')}
@@ -216,7 +216,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {filteredHistory.map((item, index) => (
               <Card key={index} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -276,7 +276,7 @@ export default function HistoryPage({ params }: HistoryPageProps) {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-brand-600 via-purple-600 to-accent-500 text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]">
                   <div className="text-4xl font-bold tracking-tight text-white mb-3">
                     {searchHistory.length}

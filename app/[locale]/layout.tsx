@@ -86,15 +86,11 @@ export default function RootLayout({
               <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60">
                 <div className="container flex h-16 items-center">
                   <Navigation locale={params.locale} />
-                  <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <div className="w-full flex-1 md:w-auto md:flex-none">
-                      {/* Search will be added here */}
-                    </div>
-                    <nav className="flex items-center space-x-3">
-                      <OnlineStatus />
-                      <LanguageSwitcher />
-                      <ThemeToggle />
-                    </nav>
+                  {/* Desktop only - no mobile já está tudo no Navigation */}
+                  <div className="hidden md:flex flex-1 items-center justify-end space-x-3">
+                    <OnlineStatus />
+                    <LanguageSwitcher />
+                    <ThemeToggle />
                   </div>
                 </div>
               </header>

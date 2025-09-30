@@ -192,14 +192,14 @@ export default function ComparePage({ params }: ComparePageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-6">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent">
+        <div className="text-center space-y-3 sm:space-y-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent px-2">
             {t('title', 'Comparar Empresas')}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             {t('subtitle', 'Compare informações de até 4 empresas lado a lado com dados detalhados e análises visuais')}
           </p>
         </div>
@@ -215,7 +215,7 @@ export default function ComparePage({ params }: ComparePageProps) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <div className="flex-1 group relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-500/20 to-accent-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
                 <div className="relative">
@@ -224,14 +224,14 @@ export default function ComparePage({ params }: ComparePageProps) {
                     value={cnpjInput}
                     onChange={(e) => handleCnpjChange(e.target.value)}
                     maxLength={18}
-                    className="h-12 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 rounded-lg transition-all duration-300"
+                    className="h-11 sm:h-12 text-sm sm:text-base bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 rounded-lg transition-all duration-300"
                   />
                 </div>
               </div>
               <Button
                 onClick={handleAddCompany}
                 disabled={isLoading || !cnpjInput}
-                className="h-12 px-8 bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none"
+                className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:transform-none"
               >
                 {isLoading ? (
                   <div className="flex items-center gap-2">
@@ -268,7 +268,7 @@ export default function ComparePage({ params }: ComparePageProps) {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {companies.map((company) => (
               <Card key={company.cnpj} className="group relative overflow-hidden border-0 bg-gradient-to-br from-white/80 to-white/60 dark:from-gray-900/80 dark:to-gray-800/60 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 hover:scale-105">
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-500/5 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>

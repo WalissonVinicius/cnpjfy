@@ -116,11 +116,11 @@ export default function HomePage({ params }: HomePageProps) {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-8 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center min-h-[calc(100vh-200px)] space-y-6 sm:space-y-8 overflow-hidden px-4">
       {/* Loading Overlay Modal */}
       {isLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 animate-in zoom-in-95 duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-md w-full animate-in zoom-in-95 duration-300">
             <div className="flex flex-col items-center space-y-6">
               {/* Animated Logo/Icon */}
               <div className="relative">
@@ -163,18 +163,18 @@ export default function HomePage({ params }: HomePageProps) {
       </div>
 
       {/* Hero Section */}
-      <div className="text-center space-y-6 max-w-4xl relative z-10">
-        <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-accent-500/10 border border-brand-500/20 mb-4">
-          <span className="text-sm font-medium text-brand-600 dark:text-brand-400">{t('newExperience', '✨ Nova experiência visual')}</span>
+      <div className="text-center space-y-4 sm:space-y-6 max-w-4xl relative z-10 w-full">
+        <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-brand-500/10 to-accent-500/10 border border-brand-500/20 mb-2 sm:mb-4">
+          <span className="text-xs sm:text-sm font-medium text-brand-600 dark:text-brand-400">{t('newExperience', '✨ Nova experiência visual')}</span>
         </div>
 
-        <h1 className="text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
           <span className="bg-gradient-to-r from-brand-600 via-purple-600 to-accent-500 bg-clip-text text-transparent animate-pulse">
             CNPJfy
           </span>
         </h1>
 
-        <p className="text-2xl font-semibold bg-gradient-to-r from-gray-700 to-gray-500 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
+        <p className="text-lg sm:text-xl md:text-2xl font-semibold bg-gradient-to-r from-gray-700 to-gray-500 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent px-4">
           {t('subtitle')}
         </p>
 
@@ -184,18 +184,18 @@ export default function HomePage({ params }: HomePageProps) {
       </div>
 
       {/* Search Form */}
-      <div className="w-full max-w-lg space-y-6 relative z-10">
-        <form onSubmit={handleSearch} className="space-y-6">
+      <div className="w-full max-w-lg space-y-4 sm:space-y-6 relative z-10">
+        <form onSubmit={handleSearch} className="space-y-4 sm:space-y-6">
           <div className="relative group">
             <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-accent-500 rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-brand-500" />
+              <Search className="absolute left-3 sm:left-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2 text-brand-500" />
               <Input
                 type="text"
                 placeholder={t('searchPlaceholder')}
                 value={cnpjInput}
                 onChange={handleInputChange}
-                className="pl-12 pr-4 text-center text-lg h-14 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300"
+                className="pl-10 sm:pl-12 pr-3 sm:pr-4 text-center text-base sm:text-lg h-12 sm:h-14 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-2 border-brand-200 dark:border-brand-800 rounded-xl focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all duration-300"
                 maxLength={18}
                 autoComplete="off"
               />
@@ -203,7 +203,7 @@ export default function HomePage({ params }: HomePageProps) {
           </div>
           <Button
             type="submit"
-            className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 sm:h-14 text-base sm:text-lg font-semibold bg-gradient-to-r from-brand-600 to-accent-500 hover:from-brand-700 hover:to-accent-600 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
             disabled={isLoading || !cnpjInput.trim()}
           >
             {isLoading ? (
@@ -223,27 +223,27 @@ export default function HomePage({ params }: HomePageProps) {
           </Button>
         </form>
 
-        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <span>{t('pressKey', 'Pressione')}</span>
-          <kbd className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">Ctrl</kbd>
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground px-2">
+          <span className="hidden sm:inline">{t('pressKey', 'Pressione')}</span>
+          <kbd className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">Ctrl</kbd>
           <span>+</span>
-          <kbd className="px-3 py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">K</kbd>
-          <span>{t('quickSearch', 'para buscar rapidamente')}</span>
+          <kbd className="px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-semibold text-gray-800 bg-gradient-to-r from-gray-100 to-gray-200 border border-gray-300 rounded-lg dark:from-gray-700 dark:to-gray-600 dark:text-gray-100 dark:border-gray-500">K</kbd>
+          <span className="text-center">{t('quickSearch', 'para buscar rapidamente')}</span>
         </div>
       </div>
 
       {/* Features Grid */}
-      <div className="w-full max-w-6xl mt-20 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-4">
+      <div className="w-full max-w-6xl mt-12 sm:mt-20 relative z-10">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent mb-3 sm:mb-4">
             {t('features.title')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             {t('featuresDescription', 'Tudo que você precisa para consultar empresas de forma eficiente e moderna')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (

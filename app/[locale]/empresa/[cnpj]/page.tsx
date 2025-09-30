@@ -22,20 +22,20 @@ async function CompanyData({ cnpj, locale }: { cnpj: string; locale: string }) {
     const company = await getCompanyByCNPJ(cnpj);
 
     return (
-      <div className="space-y-6 company-content">
+      <div className="space-y-4 sm:space-y-6 company-content">
         <CompanyHistoryTracker company={company} />
         <CompanyHeader company={company} />
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
           {/* Coluna Principal - 2/3 do espaço */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             <CompanyBasicInfo company={company} />
             <CompanyCNAE company={company} />
             <CompanyPartners company={company} />
           </div>
 
           {/* Barra Lateral - 1/3 do espaço */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <CompanyAddress company={company} />
             <div className="no-print">
               <CompanyActions company={company} locale={locale} />
@@ -55,7 +55,7 @@ async function CompanyData({ cnpj, locale }: { cnpj: string; locale: string }) {
 
 export default function CompanyPage({ params }: CompanyPageProps) {
   return (
-    <div className="container mx-auto px-4 py-6">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
       <Suspense fallback={<LoadingSkeleton />}>
         <CompanyData cnpj={params.cnpj} locale={params.locale} />
       </Suspense>
