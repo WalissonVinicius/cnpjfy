@@ -8,6 +8,8 @@ import { OnlineStatus } from '@/components/OnlineStatus';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import { LoadingScreen } from '@/components/LoadingScreen';
+import { ClientWrapper } from '@/components/ClientWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 

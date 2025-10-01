@@ -102,7 +102,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   <h3 className="text-lg font-medium mb-2">{t('baseUrl', 'URL Base')}</h3>
                   <div className="bg-gradient-to-r from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 p-3 rounded-lg border">
                     <code className="text-sm font-mono text-brand-600 dark:text-brand-400">
-                      https://opencnpj.com/api
+                      https://api.opencnpj.org
                     </code>
                   </div>
                 </div>
@@ -178,8 +178,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   <CodeBlock
                     title={t('exampleRequest', 'Exemplo de Requisição')}
                     language="curl"
-                    code={`curl -X GET "https://opencnpj.com/api/11222333000181" \\
-  -H "Accept: application/json"`}
+                    code={`curl -s "https://api.opencnpj.org/11222333000181" | jq`}
                   />
                 </div>
 
@@ -189,42 +188,59 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                     title={t('exampleResponse', 'Exemplo de Resposta (200 OK)')}
                     language="json"
                     code={`{
-  "cnpj": "11.222.333/0001-81",
-  "identificador_matriz_filial": 1,
-  "descricao_matriz_filial": "MATRIZ",
+  "cnpj": "00000000000000",
   "razao_social": "EMPRESA EXEMPLO LTDA",
   "nome_fantasia": "EXEMPLO",
-  "situacao_cadastral": 2,
-  "descricao_situacao_cadastral": "ATIVA",
-  "data_situacao_cadastral": "2020-01-15",
-  "motivo_situacao_cadastral": 0,
-  "nome_cidade_exterior": null,
-  "codigo_natureza_juridica": 2062,
-  "data_inicio_atividade": "2020-01-15",
-  "cnae_fiscal": 6201500,
-  "cnae_fiscal_descricao": "Desenvolvimento de programas de computador sob encomenda",
-  "descricao_tipo_logradouro": "RUA",
-  "logradouro": "DAS FLORES",
+  "situacao_cadastral": "Ativa",
+  "data_situacao_cadastral": "2000-01-01",
+  "matriz_filial": "Matriz",
+  "data_inicio_atividade": "2000-01-01",
+  "cnae_principal": "0000000",
+  "cnaes_secundarios": [
+    "0000001",
+    "0000002"
+  ],
+  "cnaes_secundarios_count": 2,
+  "natureza_juridica": "Sociedade Empresária Limitada",
+  "logradouro": "RUA EXEMPLO",
   "numero": "123",
-  "complemento": "SALA 456",
-  "bairro": "CENTRO",
-  "cep": "01234567",
+  "complemento": "SALA 1",
+  "bairro": "BAIRRO EXEMPLO",
+  "cep": "00000000",
   "uf": "SP",
-  "codigo_municipio": 7107,
   "municipio": "SAO PAULO",
-  "ddd_telefone_1": "11987654321",
-  "ddd_telefone_2": null,
-  "ddd_fax": null,
-  "qualificacao_do_responsavel": 10,
-  "capital_social": 50000.00,
-  "porte": "05",
-  "descricao_porte": "DEMAIS",
-  "opcao_pelo_simples": true,
-  "data_opcao_pelo_simples": "2020-02-01",
-  "data_exclusao_do_simples": null,
-  "opcao_pelo_mei": false,
-  "situacao_especial": null,
-  "data_situacao_especial": null
+  "email": "contato@exemplo.com",
+  "telefones": [
+    {
+      "ddd": "11",
+      "numero": "900000000",
+      "is_fax": false
+    }
+  ],
+  "capital_social": "1000,00",
+  "porte_empresa": "Microempresa (ME)",
+  "opcao_simples": null,
+  "data_opcao_simples": null,
+  "opcao_mei": null,
+  "data_opcao_mei": null,
+  "QSA": [
+    {
+      "nome_socio": "SOCIO PJ EXEMPLO",
+      "cnpj_cpf_socio": "00000000000000",
+      "qualificacao_socio": "Sócio Pessoa Jurídica",
+      "data_entrada_sociedade": "2000-01-01",
+      "identificador_socio": "Pessoa Jurídica",
+      "faixa_etaria": "Não se aplica"
+    },
+    {
+      "nome_socio": "SOCIA PF EXEMPLO",
+      "cnpj_cpf_socio": "***000000**",
+      "qualificacao_socio": "Administrador",
+      "data_entrada_sociedade": "2000-01-01",
+      "identificador_socio": "Pessoa Física",
+      "faixa_etaria": "31 a 40 anos"
+    }
+  ]
 }`}
                   />
                 </div>
@@ -254,8 +270,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   <CodeBlock
                     title="Exemplo de Requisição"
                     language="curl"
-                    code={`curl -X GET "https://opencnpj.com/api/info" \\
-  -H "Accept: application/json"`}
+                    code={`curl -s "https://api.opencnpj.org/info" | jq`}
                   />
                 </div>
 
@@ -362,7 +377,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
                   language="javascript"
                   code={`async function consultarCNPJ(cnpj) {
   try {
-    const response = await fetch(\`https://opencnpj.com/api/\${cnpj}\`, {
+    const response = await fetch(\`https://api.opencnpj.org/\${cnpj}\`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -387,7 +402,7 @@ export default function ApiDocsPage({ params }: ApiDocsPageProps) {
 consultarCNPJ('11222333000181')
   .then(empresa => {
     console.log(\`${t('corporateName', 'Razão Social: ')}\${empresa.razao_social}\`);
-    console.log(\`${t('cnae', 'CNAE: ')}\${empresa.cnae_fiscal_descricao}\`);
+    console.log(\`${t('cnae', 'CNAE: ')}\${empresa.cnae_principal}\`);
   })
   .catch(error => {
     console.error('${t('queryFailure', 'Falha na consulta:')}', error);
@@ -401,7 +416,7 @@ consultarCNPJ('11222333000181')
 
 // ${t('clientConfig', 'Configuração do cliente')}
 const apiClient = axios.create({
-  baseURL: 'https://opencnpj.com/api',
+  baseURL: 'https://api.opencnpj.org',
   timeout: 30000,
   headers: {
     'Accept': 'application/json',
@@ -466,7 +481,7 @@ import time
 from typing import Optional, Dict, Any
 
 class OpenCNPJClient:
-    def __init__(self, base_url: str = "https://opencnpj.com/api"):
+    def __init__(self, base_url: str = "https://api.opencnpj.org"):
         self.base_url = base_url
         self.session = requests.Session()
         self.session.headers.update({
@@ -539,8 +554,8 @@ if __name__ == "__main__":
         
         if empresa:
             print(f"${t('corporateName', 'Razão Social: ')}{empresa['razao_social']}")
-            print(f"${t('cnae', 'CNAE: ')}{empresa['cnae_fiscal_descricao']}")
-            print(f"${t('situation', 'Situação: ')}{empresa['descricao_situacao_cadastral']}")
+            print(f"${t('cnae', 'CNAE: ')}{empresa['cnae_principal']}")
+            print(f"${t('situation', 'Situação: ')}{empresa['situacao_cadastral']}")
         else:
             print("${t('companyNotFound', 'Empresa não encontrada')}")
             
@@ -584,7 +599,7 @@ public class OpenCNPJClient {
     private final String baseUrl;
 
     public OpenCNPJClient() {
-        this.baseUrl = "https://opencnpj.com/api";
+        this.baseUrl = "https://api.opencnpj.org";
         this.httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(30))
             .build();
@@ -677,13 +692,13 @@ public class OpenCNPJClient {
                 System.out.println("${t('corporateName', 'Razão Social: ')}" + 
                     empresa.get("razao_social").asText());
                 System.out.println("${t('cnae', 'CNAE: ')}" + 
-                    empresa.get("cnae_fiscal_descricao").asText());
+                    empresa.get("cnae_principal").asText());
                 
                 // ${t('processPartners', 'Processar sócios (QSA)')}
                 if (empresa.has("QSA") && empresa.get("QSA").isArray()) {
                     System.out.println("${t('partners', 'Sócios:')}");
                     empresa.get("QSA").forEach(socio -> {
-                        System.out.println("- " + socio.get("nome").asText());
+                        System.out.println("- " + socio.get("nome_socio").asText());
                     });
                 }
             } else {
